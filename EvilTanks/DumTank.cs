@@ -9,6 +9,8 @@ public class DumTank : ITank
     {
         //Prints a debug message
         GD.Print("Dum tank - Tank Setup");
+        stats.name = "DumTank";
+
     }
 
     //Logic to do every frame

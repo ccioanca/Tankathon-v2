@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5gvdx6q0b6gv"]
+[gd_scene load_steps=12 format=3 uid="uid://c5gvdx6q0b6gv"]
 
-[ext_resource type="Script" path="res://GameManager.cs" id="1_ud4g5"]
-[ext_resource type="Script" path="res://API/Scoreboard.cs" id="2_tppn5"]
+[ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_ud4g5"]
+[ext_resource type="Script" uid="uid://cldikdy7y7gym" path="res://API/Scoreboard.cs" id="2_tppn5"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="3_hohl4"]
 [ext_resource type="PackedScene" uid="uid://cnb5p5wv4lsq4" path="res://Scenes/RedTank.tscn" id="4_nvxsl"]
 [ext_resource type="PackedScene" uid="uid://b8bl3fg1j15cw" path="res://Scenes/Obstacle.tscn" id="5_a4yga"]
@@ -13,21 +13,21 @@ size = Vector2(1362.5, 81)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdgab"]
 size = Vector2(80, 800)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iw225"]
-bg_color = Color(1, 0, 0, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45pcu"]
-bg_color = Color(0, 0, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6js8"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.403922)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8n5pp"]
 bg_color = Color(0.599233, 0.082279, 0.0834944, 1)
@@ -113,120 +113,44 @@ position = Vector2(0, 360)
 shape = SubResource("RectangleShape2D_sdgab")
 
 [node name="Node2D3" parent="Obstacles" instance=ExtResource("5_a4yga")]
-position = Vector2(640, 360)
+position = Vector2(1004, 385)
 
-[node name="Scoreboard" type="Control" parent="."]
+[node name="ScoreboardContainer" type="PanelContainer" parent="."]
 top_level = true
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 171.0
+offset_bottom = 144.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x6js8")
+
+[node name="Scoreboard" type="VBoxContainer" parent="ScoreboardContainer"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 2
 script = ExtResource("2_tppn5")
 
-[node name="Panel" type="Panel" parent="Scoreboard"]
-layout_mode = 0
-offset_right = 255.0
-offset_bottom = 84.0
-
-[node name="Label" type="Label" parent="Scoreboard/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -66.5
-offset_right = 66.5
-offset_bottom = 34.0
-grow_horizontal = 2
+[node name="Label" type="Label" parent="ScoreboardContainer/Scoreboard"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Scoreboard"
 
-[node name="Panel" type="Panel" parent="Scoreboard/Panel"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -40.0
-offset_right = 40.0
-offset_bottom = -8.0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_iw225")
-
-[node name="RedScore" type="Label" parent="Scoreboard/Panel/Panel"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 34.0
-offset_top = -11.0
-offset_right = 74.0
-offset_bottom = 12.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "0"
-
-[node name="Panel2" type="Panel" parent="Scoreboard/Panel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_45pcu")
-
-[node name="BlueScore" type="Label" parent="Scoreboard/Panel/Panel2"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -43.0
-offset_top = -11.0
-offset_right = -3.0
-offset_bottom = 12.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "0"
-horizontal_alignment = 2
-
-[node name="TimeLeft" type="Label" parent="Scoreboard/Panel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -19.5
-offset_top = -37.0
-offset_right = 20.5
-offset_bottom = -9.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="TimeLeft" type="Label" parent="ScoreboardContainer/Scoreboard"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "0:00"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Scoreboard/Panel"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 10.0
-offset_right = 109.0
-offset_bottom = 44.0
-grow_horizontal = 0
+[node name="Button" type="Button" parent="ScoreboardContainer/Scoreboard"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = ExtResource("6_i106u")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8n5pp")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vo8fx")
+theme_override_styles/normal = ExtResource("6_i106u")
 text = "Restart"
 
-[connection signal="pressed" from="Scoreboard/Panel/Button" to="Scoreboard" method="RestartPressed"]
+[node name="TanksScoreContainer" type="VBoxContainer" parent="ScoreboardContainer/Scoreboard"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="ScoreboardContainer/Scoreboard/Button" to="ScoreboardContainer/Scoreboard" method="RestartPressed"]
 
 [editable path="Obstacles/Node2D"]
 [editable path="Obstacles/Node2D2"]

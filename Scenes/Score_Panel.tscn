@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://derwwfpt1xepe"]
+
+[ext_resource type="Script" uid="uid://dtclvl5fylbm3" path="res://Scripts/score_panel.gd" id="1_iothi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iw225"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5t8ik"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="TankScore" type="MarginContainer"]
+offset_right = 171.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+script = ExtResource("1_iothi")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HBox"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iw225")
+
+[node name="TankName" type="Label" parent="HBox"]
+layout_mode = 2
+text = "TankName"
+
+[node name="Panel2" type="Panel" parent="HBox"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_5t8ik")
+
+[node name="TankHealth" type="Label" parent="HBox"]
+layout_mode = 2
+text = "10/10"

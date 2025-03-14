@@ -12,14 +12,20 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 	public bool col = false;
     public Vector2 _velocity = Vector2.Zero;
+	private int health = 10;
 	
     public ITank thisTank;
 	Actions actions;
 	private IActions _passedActions;
 	private Scoreboard _scoreboard;
+	private BoxContainer _tankScoreContainer;
+    private ProgressBar _healthBar;
 
-	//collision shape
-	CollisionShape2D _collisionShape;
+	private Node scorePanel;
+
+
+    //collision shape
+    CollisionShape2D _collisionShape;
 
 	PackedScene bullet;
     Marker2D turret;
@@ -35,10 +41,12 @@ public partial class TheTank : CharacterBody2D, IEntity
     public override void _Ready()
 	{
 		_passedActions = GetNode<Actions>("Actions");
-		_scoreboard = GetParent().GetNode<Scoreboard>("Scoreboard");
+		_healthBar = GetNode<ProgressBar>("HealthBar");
+        _scoreboard = GetNode<Scoreboard>("%Scoreboard");
+        _tankScoreContainer = GetNode<BoxContainer>("%TanksScoreContainer");
 
-		//get the turret object
-		turret = GetNode<Marker2D>("Turret");
+        //get the turret object
+        turret = GetNode<Marker2D>("Turret");
 
         //get the bullet preloaded
         bullet = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
@@ -69,10 +77,16 @@ public partial class TheTank : CharacterBody2D, IEntity
 	internal void Init(TankTeam _team)
 	{
 		team = _team;
+        _healthBar.Value = health;
         thisTank.Setup(_passedActions.stats);
+
+        //setup Scoreboard object for this tank
+        SetupScoreboard(_passedActions.stats.name);
+        GD.Print("Init - " + _passedActions.stats.name);
+
     }
 
-	internal void Shoot()
+    internal void Shoot()
 	{
 		Bullet bulletInstance = (Bullet)bullet.Instantiate();
 		bulletInstance.Position = turret.GlobalPosition;
@@ -107,11 +121,28 @@ public partial class TheTank : CharacterBody2D, IEntity
     public override void _Draw()
     {
 		DrawLine(new Vector2(0, 0), new Vector2(0, -1500), Colors.Green, 2);
+		DrawLine(new Vector2(0, 0), new Vector2(150, -1500), Colors.Red, 2);
+		DrawLine(new Vector2(0, 0), new Vector2(-150, -1500), Colors.Red, 2);
     }
+
+	internal void SetupScoreboard(string name)
+	{
+		scorePanel = GD.Load<PackedScene>("res://Scenes/Score_Panel.tscn").Instantiate<Node>();
+		scorePanel.Set("tank_health", health);
+		scorePanel.Set("tank_name", name.Length > 12 ? name.Substring(0, 10) + "..." : name);
+
+        _tankScoreContainer.AddChild(scorePanel);
+	}
 
     internal void Hurt()
 	{
-		_scoreboard.ScoreChanged(team);
+		health--;
+        //_scoreboard.ScoreChanged(team);
+
+        if (health <= 0)
+			this.QueueFree();
+		else
+			_healthBar.Value = health;
     }
 
 }

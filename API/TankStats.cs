@@ -6,4 +6,5 @@ public class TankStats
 	public float xPos;
 	public float yPos;
     public TankTeam team;
+	public string name;
 }

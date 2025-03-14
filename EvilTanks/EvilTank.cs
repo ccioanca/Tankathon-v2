@@ -25,6 +25,7 @@ public class EvilTank : ITank
         //set starting state
         _s = State.MoveRight;
         rand = new Random();
+        stats.name = "EvilTank";
     }
 
     //Logic to do every frame
