@@ -36,7 +36,6 @@ public partial class TheTank : CharacterBody2D, IEntity
 	private Dictionary result;
 	private Entity entityInPath = new Entity();
 
-	public TankTeam team { get; set; }
 
     public override void _Ready()
 	{
@@ -74,9 +73,8 @@ public partial class TheTank : CharacterBody2D, IEntity
 		base._PhysicsProcess(delta);
 	}
 
-	internal void Init(TankTeam _team)
+	internal void Init()
 	{
-		team = _team;
         _healthBar.Value = health;
         thisTank.Setup(_passedActions.stats);
 
@@ -113,9 +111,18 @@ public partial class TheTank : CharacterBody2D, IEntity
 			entityInPath.rotation = entity.Rotation;
 			entityInPath.distanceTo = ((Vector2)result["position"]).DistanceTo(_collisionShape.GlobalPosition) - (_collisionShape.Shape.GetRect().Size.Y / 2);
 
+			if (entityInPath.eType == EntityType.Bullet)
+			{
+				if((entity as Bullet).initializer == this) //if the bullet we scanned, we also fired, we can ignore it, it can't hear us
+				{
+					return null;
+					GD.Print("We Scanned own bullet");
+				}
+			}
+
             return entityInPath;
 		}
-		return new Entity();
+		return null;
     }
 
     public override void _Draw()
@@ -132,17 +139,20 @@ public partial class TheTank : CharacterBody2D, IEntity
 		scorePanel.Set("tank_name", name.Length > 12 ? name.Substring(0, 10) + "..." : name);
 
         _tankScoreContainer.AddChild(scorePanel);
-	}
+		scorePanel.Call("change_health", health);
+
+    }
 
     internal void Hurt()
 	{
 		health--;
         //_scoreboard.ScoreChanged(team);
 
+        _healthBar.Value = health;
+        scorePanel.Call("change_health", health);
+
         if (health <= 0)
 			this.QueueFree();
-		else
-			_healthBar.Value = health;
     }
 
 }

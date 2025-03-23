@@ -18,10 +18,4 @@ namespace Tankathon.API
         Obstacle, 
         Bullet
     }
-
-    public enum TankTeam
-    {
-        Red,
-        Blue
-    }
 }

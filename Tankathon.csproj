@@ -5,10 +5,9 @@
     <RootNamespace>Tankathon</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Helpers\**" />
     <Compile Remove="OLD.godot\**" />
+    <EmbeddedResource Remove="Helpers\**" />
     <EmbeddedResource Remove="OLD.godot\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>

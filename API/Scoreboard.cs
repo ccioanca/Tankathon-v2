@@ -60,7 +60,7 @@ namespace Tankathon.API
             GetTree().ReloadCurrentScene();
         }
 
-		public void ScoreChanged(TankTeam teamHurt)
+		public void ScoreChanged()
 		{
 			//score changed
 			//switch (teamHurt)

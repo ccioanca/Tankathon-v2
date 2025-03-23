@@ -14,5 +14,10 @@ func _ready():
 	tank_name_panel.text = tank_name
 	
 	tank_health_panel = get_node("HBox/TankHealth") as Label;
-	tank_health_panel.text = "%s/10" % tank_health
+	change_health(tank_health)
 	pass
+
+func change_health(health):
+	tank_health = health
+	tank_health_panel.text = "%s/10" % tank_health
+	

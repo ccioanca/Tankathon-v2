@@ -9,7 +9,7 @@ public class MyTank : ITank
 	{
 		//Prints a debug message
 		GD.Print("My tank - Tank Setup");
-		stats.name = "MYTankMYTankMYTank";
+		stats.name = "My Tank";
 	}
 
 	//Logic to do every frame

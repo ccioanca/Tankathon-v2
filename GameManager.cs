@@ -20,7 +20,7 @@ public partial class GameManager : Node2D
 		blueTank.thisTank = new Tankathon.MyTank.MyTank();
 		redTank.thisTank = new Tankathon.EvilTank.DumTank(); //Swap DumTank to EvilTank for a tank with a little more logic
 
-		blueTank.Init(TankTeam.Blue);
-		redTank.Init(TankTeam.Red);
+		blueTank.Init();
+		redTank.Init();
     }
 }
