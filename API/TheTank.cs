@@ -13,6 +13,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 	public bool col = false;
     public Vector2 _velocity = Vector2.Zero;
 	private int health = 10;
+	private int points = 0;
 	
     public ITank thisTank;
 	Actions actions;
@@ -32,9 +33,9 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 	//for the raycasting
 	private PhysicsDirectSpaceState2D spaceState;
-	private PhysicsRayQueryParameters2D query;
+	private PhysicsRayQueryParameters2D query_m;
 	private Dictionary result;
-	private Entity entityInPath = new Entity();
+	//private Entity entityInPath = new Entity();
 
 
     public override void _Ready()
@@ -80,7 +81,6 @@ public partial class TheTank : CharacterBody2D, IEntity
 
         //setup Scoreboard object for this tank
         SetupScoreboard(_passedActions.stats.name);
-        GD.Print("Init - " + _passedActions.stats.name);
 
     }
 
@@ -97,26 +97,29 @@ public partial class TheTank : CharacterBody2D, IEntity
 	{
         spaceState = GetWorld2D().DirectSpaceState;
         // use global coordinates, not local to node
-        query = PhysicsRayQueryParameters2D.Create(GlobalPosition, ToGlobal(new Vector2(0, -1500)));
-		query.CollideWithAreas = true;
-        query.Exclude = new Array<Rid> { GetRid() };
-        result = spaceState.IntersectRay(query);
+        query_m = PhysicsRayQueryParameters2D.Create(GlobalPosition, ToGlobal(new Vector2(0, -1500)));
+		query_m.CollideWithAreas = true;
+        query_m.Exclude = new Array<Rid> { GetRid() };
+        result = spaceState.IntersectRay(query_m);
 
 		if(result.Count > 0)
 		{
 			var entity = result["collider"].As<CollisionObject2D>();
+
+            Entity entityInPath = new Entity();
 
             entityInPath.eType = (entity as IEntity).eType;
 			entityInPath.globalPosition = entity.GlobalPosition;
 			entityInPath.rotation = entity.Rotation;
 			entityInPath.distanceTo = ((Vector2)result["position"]).DistanceTo(_collisionShape.GlobalPosition) - (_collisionShape.Shape.GetRect().Size.Y / 2);
 
-			if (entityInPath.eType == EntityType.Bullet)
+			if ((entity as IEntity).eType == EntityType.Bullet)
 			{
-				if((entity as Bullet).initializer == this) //if the bullet we scanned, we also fired, we can ignore it, it can't hear us
+				//TODO: This isn't great because we won't scan anything if we're seeing our bullet. 
+				//		We need a way to just ignore our bullets.
+				if((entity as Bullet).initializer == this) //if the bullet we scanned, we also fired, we can ignore it, it can't hurt us
 				{
 					return null;
-					GD.Print("We Scanned own bullet");
 				}
 			}
 
@@ -155,5 +158,10 @@ public partial class TheTank : CharacterBody2D, IEntity
 			this.QueueFree();
     }
 
+	internal void Score()
+	{
+		points++;
+		scorePanel.Call("change_points", points);
+    }
 }
 

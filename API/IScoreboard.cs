@@ -1,7 +1,4 @@
-﻿using Godot;
-using System.Threading;
-
-namespace Tankathon.API
+﻿namespace Tankathon.API
 {
     public interface IScoreboard
     {

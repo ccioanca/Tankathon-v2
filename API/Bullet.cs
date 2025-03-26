@@ -22,6 +22,7 @@ public partial class Bullet : Area2D, IEntity
 			if (body is TheTank)
 			{
 				(body as TheTank).Hurt();
+				initializer.Score();
 			}
 			QueueFree();
 		}

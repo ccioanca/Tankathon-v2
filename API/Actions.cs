@@ -27,9 +27,9 @@ internal partial class Actions : Node2D, IActions
 		//set the initial tank states
 		_stats = new TankStats
 		{
-			rotation = tank.RotationDegrees,
-			xPos = tank.Position.X,
-			yPos = tank.Position.Y
+			_rotation = tank.RotationDegrees,
+			_xPos = tank.Position.X,
+			_yPos = tank.Position.Y
 		};
 
 		//set the cooldown timeLeft for shooting
@@ -51,9 +51,9 @@ internal partial class Actions : Node2D, IActions
     {
 		tank._velocity = Vector2.Zero;
 
-        _stats.rotation = tank.RotationDegrees;
-        _stats.xPos = tank.Position.X;
-        _stats.yPos = tank.Position.Y;
+        _stats._rotation = tank.RotationDegrees;
+        _stats._xPos = tank.Position.X;
+        _stats._yPos = tank.Position.Y;
 
         base._PhysicsProcess(delta);
 

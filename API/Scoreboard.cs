@@ -11,11 +11,6 @@ namespace Tankathon.API
 {
 	public partial class Scoreboard : Control, IScoreboard
 	{
-		[Export]
-		private int blueScore { get; set; }
-		[Export]
-		private int redScore { get; set; }
-
 		public int timeLeft => (int)_timer.TimeLeft;
 
 

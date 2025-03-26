@@ -20,7 +20,7 @@ public class EvilTank : ITank
 
     Random rand;
 
-    public void Setup(TankStats stats)
+    public void Setup(ITankStats stats)
 	{
         //set starting state
         _s = State.MoveRight;

@@ -5,12 +5,11 @@ namespace Tankathon.EvilTank;
 public class DumTank : ITank
 {
     //Logic to do at initialization
-    public void Setup(TankStats stats)
+    public void Setup(ITankStats stats)
     {
         //Prints a debug message
         GD.Print("Dum tank - Tank Setup");
         stats.name = "DumTank";
-
     }
 
     //Logic to do every frame

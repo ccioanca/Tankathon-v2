@@ -5,7 +5,7 @@ namespace Tankathon.MyTank;
 public class MyTank : ITank
 {
     //Logic to do at initialization
-    public void Setup(TankStats stats)
+    public void Setup(ITankStats stats)
 	{
 		//Prints a debug message
 		GD.Print("My tank - Tank Setup");
