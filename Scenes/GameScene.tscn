@@ -113,7 +113,7 @@ position = Vector2(0, 360)
 shape = SubResource("RectangleShape2D_sdgab")
 
 [node name="Node2D3" parent="Obstacles" instance=ExtResource("5_a4yga")]
-position = Vector2(1004, 385)
+position = Vector2(640, 385)
 
 [node name="ScoreboardContainer" type="PanelContainer" parent="."]
 top_level = true

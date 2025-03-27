@@ -64,7 +64,7 @@ internal partial class Actions : Node2D, IActions
 		get => _stats;
 	}
 
-    public Entity Scan()
+    public Dictionary<Side, Entity> Scan()
 	{
 		return tank.LookAt();
 	}

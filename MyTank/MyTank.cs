@@ -5,11 +5,14 @@ namespace Tankathon.MyTank;
 public class MyTank : ITank
 {
     //Logic to do at initialization
-    public void Setup(ITankStats stats)
+	//You're given the setup props to set yourself! 
+    public void Setup(ITankSetup setup)
 	{
 		//Prints a debug message
 		GD.Print("My tank - Tank Setup");
-		stats.name = "My Tank";
+		setup.name = "My Tank";
+		setup.primaryColor = "#000000";
+		setup.secondaryColor = "#ffffff";
 	}
 
 	//Logic to do every frame
@@ -17,6 +20,7 @@ public class MyTank : ITank
 	{
 		//Your Tank Brain logic starts here.
 		actions.MoveForward();
+
     }
 
 }

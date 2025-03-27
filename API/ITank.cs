@@ -6,6 +6,6 @@ namespace Tankathon.API;
 
 public interface ITank
 {
-	void Setup(ITankStats stats);
+	void Setup(ITankSetup setup);
 	void Do(IActions actions, IScoreboard scoreboard);
 }

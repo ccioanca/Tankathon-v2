@@ -54,12 +54,6 @@ namespace Tankathon.API
 			GD.Print("Restarting");
             GetTree().ReloadCurrentScene();
         }
-
-		public void ScoreChanged()
-		{
-
-		}
-
 		public void RestartPressed()
 		{
             GetTree().ReloadCurrentScene();

@@ -1,4 +1,7 @@
-﻿namespace Tankathon.API
+﻿using System;
+using System.Collections.Generic;
+
+namespace Tankathon.API
 {
     public interface IScoreboard
     {

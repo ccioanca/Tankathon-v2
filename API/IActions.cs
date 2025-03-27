@@ -18,7 +18,7 @@ public interface IActions
     ///	<returns>An Entity object representing what the tank sees in front. 
     ///	The Entity object has properties for it's type, global position, rotation, and a representation of the distance between the scanner and the object being seen.
     /// </returns>
-    public Entity Scan();
+    public Dictionary<Side, Entity> Scan();
 
     /// <summary>
     /// Moves the tank forward by the base tank velocity
@@ -51,4 +51,11 @@ public enum Rotation
     None,
     CW,
     CCW,
+}
+
+public enum Side
+{
+    Left = -1,
+    Middle = 0,
+    Right = 1,
 }

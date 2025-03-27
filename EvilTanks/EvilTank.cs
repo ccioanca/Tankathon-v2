@@ -20,12 +20,15 @@ public class EvilTank : ITank
 
     Random rand;
 
-    public void Setup(ITankStats stats)
+    public void Setup(ITankSetup setup)
 	{
+        setup.name = "EvilTank";
+        setup.primaryColor = "#b8564f";
+        setup.secondaryColor = "#4b344f";
+
         //set starting state
         _s = State.MoveRight;
         rand = new Random();
-        stats.name = "EvilTank";
     }
 
     //Logic to do every frame
@@ -137,7 +140,7 @@ public class EvilTank : ITank
             {
                 movingLeft = false;
 
-                if (!Mathf.IsEqualApprox(Mathf.Round(actions.stats.rotation), 180) && !(actions.Scan().eType == EntityType.Tank))
+                if (!Mathf.IsEqualApprox(Mathf.Round(actions.stats.rotation), 180) && !(actions.Scan()[API.Side.Middle].eType == EntityType.Tank))
                 {
                     //if ((actions.Scan().eType == EntityType.Tank))
                     //    GD.Print("Seeing Tank");

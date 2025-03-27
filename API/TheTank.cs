@@ -20,6 +20,7 @@ public partial class TheTank : CharacterBody2D, IEntity
     public ITank thisTank;
 	Actions actions;
 	private IActions _passedActions;
+	private TankSetup _tankSetup;
 	private Scoreboard _scoreboard;
 	private BoxContainer _tankScoreContainer;
     private ProgressBar _healthBar;
@@ -27,17 +28,20 @@ public partial class TheTank : CharacterBody2D, IEntity
 	private Node scorePanel;
 
 
-    //collision shape
+    //Shooty things
     CollisionShape2D _collisionShape;
-
 	PackedScene bullet;
     Marker2D turret;
+    private List<Bullet> bulletsFired = new List<Bullet>();
 
-	//for the raycasting
-	private PhysicsDirectSpaceState2D spaceState;
+
+    //For the raycasting
+    private PhysicsDirectSpaceState2D spaceState;
 	private PhysicsRayQueryParameters2D query_m;
-	private Dictionary result;
-	private List<Bullet> bulletsFired = new List<Bullet>();
+	private PhysicsRayQueryParameters2D query_l;
+	private PhysicsRayQueryParameters2D query_r;
+    private Dictionary rayQueryResult;
+	private System.Collections.Generic.Dictionary<Side, Entity> hitResults = new System.Collections.Generic.Dictionary<Side, Entity>();
 
 
     public override void _Ready()
@@ -46,6 +50,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 		_healthBar = GetNode<ProgressBar>("HealthBar");
         _scoreboard = GetNode<Scoreboard>("%Scoreboard");
         _tankScoreContainer = GetNode<BoxContainer>("%TanksScoreContainer");
+		_tankSetup = new TankSetup();
 
         //get the turret object
         turret = GetNode<Marker2D>("Turret");
@@ -79,10 +84,10 @@ public partial class TheTank : CharacterBody2D, IEntity
 	internal void Init()
 	{
         _healthBar.Value = health;
-        thisTank.Setup(_passedActions.stats);
+        thisTank.Setup(_tankSetup);
 
         //setup Scoreboard object for this tank
-        SetupScoreboard(_passedActions.stats.name);
+        SetupScoreboard(_tankSetup);
 
     }
 
@@ -101,46 +106,77 @@ public partial class TheTank : CharacterBody2D, IEntity
 		bulletsFired.Remove(bullet);
 	}
 
-	internal Entity LookAt()
+	internal System.Collections.Generic.Dictionary<Side, Entity> LookAt()
 	{
+		hitResults.Clear();
+
         spaceState = GetWorld2D().DirectSpaceState;
+		//Middle Raycast
         // use global coordinates, not local to node
         query_m = PhysicsRayQueryParameters2D.Create(GlobalPosition, ToGlobal(new Vector2(0, -1500)));
 		query_m.CollideWithAreas = true;
         query_m.Exclude = [GetRid(), .. bulletsFired.Select(b => b.GetRid()).ToArray()];
-        result = spaceState.IntersectRay(query_m);
+        rayQueryResult = spaceState.IntersectRay(query_m);
 
-		if(result.Count > 0)
+		if(rayQueryResult.Count > 0)
 		{
-			var entity = result["collider"].As<CollisionObject2D>();
-
-            Entity entityInPath = new Entity();
-
-            entityInPath.eType = (entity as IEntity).eType;
-			entityInPath.globalPosition = entity.GlobalPosition;
-			entityInPath.rotation = entity.Rotation;
-			entityInPath.distanceTo = ((Vector2)result["position"]).DistanceTo(_collisionShape.GlobalPosition) - (_collisionShape.Shape.GetRect().Size.Y / 2);
-
-            return entityInPath;
+			var entity = rayQueryResult["collider"].As<CollisionObject2D>();
+            hitResults.Add(Side.Middle, GetEntityInPath(entity));
 		}
-		return null;
+
+        //Left Raycast
+        query_l = PhysicsRayQueryParameters2D.Create(GlobalPosition, ToGlobal(new Vector2(-150, -1500)));
+        query_l.CollideWithAreas = true;
+        query_l.Exclude = [GetRid(), .. bulletsFired.Select(b => b.GetRid()).ToArray()];
+        rayQueryResult = spaceState.IntersectRay(query_l);
+
+        if (rayQueryResult.Count > 0)
+        {
+            var entity = rayQueryResult["collider"].As<CollisionObject2D>();
+            hitResults.Add(Side.Left, GetEntityInPath(entity));
+        }
+
+        //Right Raycast
+        query_r = PhysicsRayQueryParameters2D.Create(GlobalPosition, ToGlobal(new Vector2(150, -1500)));
+        query_r.CollideWithAreas = true;
+        query_r.Exclude = [GetRid(), .. bulletsFired.Select(b => b.GetRid()).ToArray()];
+        rayQueryResult = spaceState.IntersectRay(query_r);
+
+        if (rayQueryResult.Count > 0)
+        {
+            var entity = rayQueryResult["collider"].As<CollisionObject2D>();
+            hitResults.Add(Side.Right, GetEntityInPath(entity));
+        }
+
+        return hitResults;
+    }
+
+	internal Entity GetEntityInPath(CollisionObject2D entity)
+	{
+        Entity entityInPath = new Entity();
+        entityInPath.eType = (entity as IEntity).eType;
+        entityInPath.globalPosition = entity.GlobalPosition;
+        entityInPath.rotation = entity.Rotation;
+        entityInPath.distanceTo = ((Vector2)rayQueryResult["position"]).DistanceTo(_collisionShape.GlobalPosition) - (_collisionShape.Shape.GetRect().Size.Y / 2);
+		return entityInPath;
     }
 
     public override void _Draw()
     {
-		DrawLine(new Vector2(0, 0), new Vector2(0, -1500), Colors.Green, 2);
-		DrawLine(new Vector2(0, 0), new Vector2(150, -1500), Colors.Red, 2);
-		DrawLine(new Vector2(0, 0), new Vector2(-150, -1500), Colors.Red, 2);
+		DrawLine(new Vector2(0, 0), new Vector2(0, -1500), Colors.Green, 2); //Middle
+		DrawLine(new Vector2(0, 0), new Vector2(150, -1500), Colors.Red, 2); //Right
+		DrawLine(new Vector2(0, 0), new Vector2(-150, -1500), Colors.Blue, 2); //Left
     }
 
-	internal void SetupScoreboard(string name)
+	internal void SetupScoreboard(TankSetup setup)
 	{
 		scorePanel = GD.Load<PackedScene>("res://Scenes/Score_Panel.tscn").Instantiate<Node>();
 		scorePanel.Set("tank_health", health);
-		scorePanel.Set("tank_name", name.Length > 12 ? name.Substring(0, 10) + "..." : name);
+		scorePanel.Set("tank_name", setup.name.Length > 12 ? setup.name.Substring(0, 10) + "..." : setup.name);
 
         _tankScoreContainer.AddChild(scorePanel);
 		scorePanel.Call("change_health", health);
+		scorePanel.Call("change_panel_color", setup.primaryColor, setup.secondaryColor);
 
     }
 
