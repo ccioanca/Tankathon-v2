@@ -57,33 +57,8 @@ namespace Tankathon.API
 
 		public void ScoreChanged()
 		{
-			//score changed
-			//switch (teamHurt)
-			//{
-			//	case TankTeam.Red:
-			//		blueScore++;
-			//		_blueScore.Text = (blueScore).ToString();
-			//		break;
-			//	case TankTeam.Blue:
-			//		redScore++;
-   //                 _redScore.Text = (redScore).ToString();
-   //                 break;
-			//	default:
-			//		break;
-			//}
-		}
 
-		//public int GetScoreForTeam(TankTeam team)
-  //      {
-  //          switch(team)
-		//	{
-		//		case TankTeam.Red:
-		//			return redScore;
-		//		case TankTeam.Blue:
-		//			return blueScore;
-		//		default: return -1;
-		//	}
-  //      }
+		}
 
 		public void RestartPressed()
 		{

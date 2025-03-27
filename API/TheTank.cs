@@ -1,5 +1,7 @@
 using Godot;
 using Godot.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tankathon.API.Internal;
 
@@ -35,7 +37,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 	private PhysicsDirectSpaceState2D spaceState;
 	private PhysicsRayQueryParameters2D query_m;
 	private Dictionary result;
-	//private Entity entityInPath = new Entity();
+	private List<Bullet> bulletsFired = new List<Bullet>();
 
 
     public override void _Ready()
@@ -91,7 +93,13 @@ public partial class TheTank : CharacterBody2D, IEntity
 		bulletInstance.Rotation = this.Rotation;
 		bulletInstance.initializer = this;
 		GetParent().AddChild(bulletInstance);
+		bulletsFired.Add(bulletInstance);
     }
+
+	internal void PopBullet(Bullet bullet)
+	{
+		bulletsFired.Remove(bullet);
+	}
 
 	internal Entity LookAt()
 	{
@@ -99,7 +107,7 @@ public partial class TheTank : CharacterBody2D, IEntity
         // use global coordinates, not local to node
         query_m = PhysicsRayQueryParameters2D.Create(GlobalPosition, ToGlobal(new Vector2(0, -1500)));
 		query_m.CollideWithAreas = true;
-        query_m.Exclude = new Array<Rid> { GetRid() };
+        query_m.Exclude = [GetRid(), .. bulletsFired.Select(b => b.GetRid()).ToArray()];
         result = spaceState.IntersectRay(query_m);
 
 		if(result.Count > 0)
@@ -112,16 +120,6 @@ public partial class TheTank : CharacterBody2D, IEntity
 			entityInPath.globalPosition = entity.GlobalPosition;
 			entityInPath.rotation = entity.Rotation;
 			entityInPath.distanceTo = ((Vector2)result["position"]).DistanceTo(_collisionShape.GlobalPosition) - (_collisionShape.Shape.GetRect().Size.Y / 2);
-
-			if ((entity as IEntity).eType == EntityType.Bullet)
-			{
-				//TODO: This isn't great because we won't scan anything if we're seeing our bullet. 
-				//		We need a way to just ignore our bullets.
-				if((entity as Bullet).initializer == this) //if the bullet we scanned, we also fired, we can ignore it, it can't hurt us
-				{
-					return null;
-				}
-			}
 
             return entityInPath;
 		}
