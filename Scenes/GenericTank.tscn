@@ -57,7 +57,7 @@ step = 1.0
 value = 3.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="."]
+[node name="NameLabel" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

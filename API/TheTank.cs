@@ -24,6 +24,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 	private Scoreboard _scoreboard;
 	private BoxContainer _tankScoreContainer;
     private ProgressBar _healthBar;
+	private Label _tankLabel;
 
 	private Node scorePanel;
 
@@ -48,6 +49,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 	{
 		_passedActions = GetNode<Actions>("Actions");
 		_healthBar = GetNode<ProgressBar>("HealthBar");
+        _tankLabel = GetNode<Label>("NameLabel");
         _scoreboard = GetNode<Scoreboard>("%Scoreboard");
         _tankScoreContainer = GetNode<BoxContainer>("%TanksScoreContainer");
 		_tankSetup = new TankSetup();
@@ -78,6 +80,8 @@ public partial class TheTank : CharacterBody2D, IEntity
 		else 
 			col = false;
 
+		_tankLabel.Rotation = -this.Rotation;
+
 		base._PhysicsProcess(delta);
 	}
 
@@ -89,6 +93,9 @@ public partial class TheTank : CharacterBody2D, IEntity
         //setup Scoreboard object for this tank
         SetupScoreboard(_tankSetup);
 
+		//setup name
+		_tankLabel.Text = _tankSetup.name;
+		_tankLabel.PivotOffset = _tankLabel.Size/2;
     }
 
     internal void Shoot()
