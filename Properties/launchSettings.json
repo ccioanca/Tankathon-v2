@@ -8,6 +8,12 @@
     },
     "Tankathon": {
       "commandName": "Project"
+    },
+    "Godot Executable GL": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\cristian.cioanca\\Downloads\\Godot_v4.4-stable_win64.exe\\Godot_v4.4-stable_win64.exe",
+      "workingDirectory": ".",
+      "nativeDebugging": true
     }
   }
 }

@@ -66,6 +66,13 @@ public partial class TheTank : CharacterBody2D, IEntity
         base._Ready();
     }
 
+	void OnLabelResized(){
+		if (_tankLabel != null)
+		{
+			_tankLabel.PivotOffset = _tankLabel.Size / 2;
+		}
+    }
+
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
@@ -80,7 +87,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 		else 
 			col = false;
 
-		_tankLabel.Rotation = -this.Rotation;
+        _tankLabel.Rotation = -this.Rotation;
 
 		base._PhysicsProcess(delta);
 	}
@@ -95,7 +102,6 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 		//setup name
 		_tankLabel.Text = _tankSetup.name;
-		_tankLabel.PivotOffset = _tankLabel.Size/2;
     }
 
     internal void Shoot()
