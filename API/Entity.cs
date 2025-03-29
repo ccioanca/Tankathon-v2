@@ -5,10 +5,10 @@ namespace Tankathon.API
 {
     public class Entity
     {
-        public EntityType eType;
-        public Vector2 globalPosition;
-        public float rotation;
-        public float distanceTo;
+        public EntityType eType { get; }
+        public Vector2 globalPosition { get; }
+        public float rotation { get; }
+        public float distanceTo { get; }
 
         public Entity()
         {
@@ -17,5 +17,14 @@ namespace Tankathon.API
             rotation = 0f;
             distanceTo = -1f;
         }
+
+        public Entity(EntityType eType, Vector2 globalPosition, float rotation, float distanceTo)
+        {
+            this.eType = eType;
+            this.globalPosition = globalPosition;
+            this.rotation = rotation;
+            this.distanceTo = distanceTo;
+        }
+
     }
 }

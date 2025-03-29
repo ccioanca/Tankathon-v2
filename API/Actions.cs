@@ -10,14 +10,19 @@ internal partial class Actions : Node2D, IActions
 	TheTank tank;
 	TankStats _stats;
 
-	Timer _timer = new Timer();
+    public ITankStats stats
+    {
+        get => _stats;
+    }
+
+    Timer _timer = new Timer();
     bool canShoot = true;
 	float cooldownT = 5f; //cooldown timeLeft
 
 	public int tankSpeed => 200; //~100 orig
 	public int rotateSpeed => 2; //~2 orig
 
-	private bool canRotate = false;
+    private bool canRotate = false;
 
     public override void _Ready()
 	{
@@ -27,9 +32,9 @@ internal partial class Actions : Node2D, IActions
 		//set the initial tank states
 		_stats = new TankStats
 		{
-			_rotation = tank.RotationDegrees,
-			_xPos = tank.Position.X,
-			_yPos = tank.Position.Y
+			rotation = tank.RotationDegrees,
+			xPos = tank.Position.X,
+			yPos = tank.Position.Y
 		};
 
 		//set the cooldown timeLeft for shooting
@@ -51,18 +56,14 @@ internal partial class Actions : Node2D, IActions
     {
 		tank._velocity = Vector2.Zero;
 
-        _stats._rotation = tank.RotationDegrees;
-        _stats._xPos = tank.Position.X;
-        _stats._yPos = tank.Position.Y;
+        _stats.rotation = tank.RotationDegrees;
+        _stats.xPos = tank.Position.X;
+        _stats.yPos = tank.Position.Y;
 
         base._PhysicsProcess(delta);
 
 		canRotate = true;
     }
-
-	public TankStats stats {
-		get => _stats;
-	}
 
     public Dictionary<Side, Entity> Scan()
 	{

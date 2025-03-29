@@ -10,7 +10,7 @@ using Tankathon.API;
 namespace Tankathon.API;
 public interface IActions
 {
-    TankStats stats { get; }
+    public ITankStats stats { get; }
 
     /// <summary>
     /// Scans directly in front of the tank via ray casting

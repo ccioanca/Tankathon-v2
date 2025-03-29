@@ -166,11 +166,13 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 	internal Entity GetEntityInPath(CollisionObject2D entity)
 	{
-        Entity entityInPath = new Entity();
-        entityInPath.eType = (entity as IEntity).eType;
-        entityInPath.globalPosition = entity.GlobalPosition;
-        entityInPath.rotation = entity.Rotation;
-        entityInPath.distanceTo = ((Vector2)rayQueryResult["position"]).DistanceTo(_collisionShape.GlobalPosition) - (_collisionShape.Shape.GetRect().Size.Y / 2);
+        Entity entityInPath = new Entity(
+            (entity as IEntity).eType,
+            entity.GlobalPosition,
+            entity.Rotation,
+            ((Vector2)rayQueryResult["position"]).DistanceTo(_collisionShape.GlobalPosition) - (_collisionShape.Shape.GetRect().Size.Y / 2)
+            );
+
 		return entityInPath;
     }
 
