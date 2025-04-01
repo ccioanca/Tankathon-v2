@@ -20,7 +20,6 @@ public class MyTank : ITank
 	{
 		//Your Tank Brain logic starts here.
 		actions.MoveForward();
-
     }
 
 }
