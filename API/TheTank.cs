@@ -69,7 +69,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 	void OnLabelResized(){
 		if (_tankLabel != null)
 		{
-			_tankLabel.PivotOffset = _tankLabel.Size / 2;
+			_tankLabel.PivotOffset = new Vector2(_tankLabel.Size.X / 2, -_tankLabel.Position.Y);
 		}
     }
 
