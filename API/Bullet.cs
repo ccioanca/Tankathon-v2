@@ -23,8 +23,8 @@ public partial class Bullet : Area2D, IEntity
 			{
 				(body as TheTank).Hurt();
 				initializer.Score();
-				initializer.PopBullet(this);
 			}
+            initializer.PopBullet(this);
 			QueueFree();
 		}
     }
