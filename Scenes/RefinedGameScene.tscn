@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce0ys0u8c3jbr"]
+
+[ext_resource type="PackedScene" uid="uid://c5gvdx6q0b6gv" path="res://Scenes/DevScene.tscn" id="1_05byk"]
+
+[node name="GameScene" instance=ExtResource("1_05byk")]
+
+[editable path="Obstacles/Node2D"]
+[editable path="Obstacles/Node2D2"]
+[editable path="Obstacles/Node2D4"]
+[editable path="Obstacles/Node2D5"]
