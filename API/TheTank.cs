@@ -28,9 +28,13 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 	private Node scorePanel;
 
+	private AudioStream shootSound;
+	private AudioStream deathSound;
+
+
 
     //Shooty things
-    CollisionShape2D _collisionShape;
+	CollisionShape2D _collisionShape;
 	PackedScene bullet;
     Marker2D turret;
     private List<Bullet> bulletsFired = new List<Bullet>();
@@ -45,26 +49,34 @@ public partial class TheTank : CharacterBody2D, IEntity
 	private System.Collections.Generic.Dictionary<Side, Entity> hitResults = new System.Collections.Generic.Dictionary<Side, Entity>();
 
 
+	//SFX
+	AudioStreamPlayer shootPlayer = new AudioStreamPlayer();
+	AudioStreamPlayer deathPlayer = new AudioStreamPlayer();
+
     public override void _Ready()
 	{
 		_passedActions = GetNode<Actions>("Actions");
 		_healthBar = GetNode<ProgressBar>("HealthBar");
-        _tankLabel = GetNode<Label>("NameLabel");
-        _scoreboard = GetNode<Scoreboard>("%Scoreboard");
-        _tankScoreContainer = GetNode<BoxContainer>("%TanksScoreContainer");
+		_tankLabel = GetNode<Label>("NameLabel");
+		_scoreboard = GetNode<Scoreboard>("%Scoreboard");
+		_tankScoreContainer = GetNode<BoxContainer>("%TanksScoreContainer");
 		_tankSetup = new TankSetup();
 
-        //get the turret object
-        turret = GetNode<Marker2D>("Turret");
+		//get the turret object
+		turret = GetNode<Marker2D>("Turret");
 
-        //get the bullet preloaded
-        bullet = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
+		//get the bullet preloaded
+		bullet = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
 
 		//get sel references
 		_collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
 
-        base._Ready();
-    }
+		//SFX
+		AddChild(shootPlayer);
+		AddChild(deathPlayer);
+
+		base._Ready();
+	}
 
 	void OnLabelResized(){
 		if (_tankLabel != null)
@@ -92,19 +104,25 @@ public partial class TheTank : CharacterBody2D, IEntity
 		base._PhysicsProcess(delta);
 	}
 
-	internal void Init()
+	internal void Init(AudioStream _shoot = null, AudioStream _death = null)
 	{
-        _healthBar.Value = health;
-        thisTank.Setup(_tankSetup);
+		_healthBar.Value = health;
+		thisTank.Setup(_tankSetup);
 
-        //setup Scoreboard object for this tank
-        SetupScoreboard(_tankSetup);
+		//setup Scoreboard object for this tank
+		SetupScoreboard(_tankSetup);
 
 		//setup name
 		_tankLabel.Text = _tankSetup.name;
+
+		//setup sounds
+		shootSound = _shoot;
+		deathSound = _death;
+		shootPlayer.Stream = shootSound;
+		deathPlayer.Stream = deathSound;		
     }
 
-    internal void Shoot()
+	internal void Shoot()
 	{
 		Bullet bulletInstance = (Bullet)bullet.Instantiate();
 		bulletInstance.Position = turret.GlobalPosition;
@@ -112,6 +130,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 		bulletInstance.initializer = this;
 		GetParent().AddChild(bulletInstance);
 		bulletsFired.Add(bulletInstance);
+		shootPlayer.Play();
     }
 
 	internal void PopBullet(Bullet bullet)
@@ -176,12 +195,12 @@ public partial class TheTank : CharacterBody2D, IEntity
 		return entityInPath;
     }
 
-    public override void _Draw()
-    {
-		DrawLine(new Vector2(0, 0), new Vector2(0, -1500), Colors.Green, 2); //Middle
-		DrawLine(new Vector2(0, 0), new Vector2(150, -1500), Colors.Red, 2); //Right
-		DrawLine(new Vector2(0, 0), new Vector2(-150, -1500), Colors.Blue, 2); //Left
-    }
+    // public override void _Draw()
+    // {
+	// 	DrawLine(new Vector2(0, 0), new Vector2(0, -1500), Colors.Green, 2); //Middle
+	// 	DrawLine(new Vector2(0, 0), new Vector2(150, -1500), Colors.Red, 2); //Right
+	// 	DrawLine(new Vector2(0, 0), new Vector2(-150, -1500), Colors.Blue, 2); //Left
+    // }
 
 	internal void SetupScoreboard(TankSetup setup)
 	{
@@ -203,8 +222,11 @@ public partial class TheTank : CharacterBody2D, IEntity
         _healthBar.Value = health;
         scorePanel.Call("change_health", health);
 
-        if (health <= 0)
+		if (health <= 0)
+		{
+			deathPlayer.Play();
 			this.QueueFree();
+		}
     }
 
 	internal void Score()

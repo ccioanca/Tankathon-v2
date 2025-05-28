@@ -1,0 +1,168 @@
+[gd_scene load_steps=12 format=3 uid="uid://h24h80a7tap7"]
+
+[ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
+[ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
+[ext_resource type="Resource" uid="uid://dc2qux0de6k48" path="res://TeamAssets/test_team.tres" id="2_u810s"]
+[ext_resource type="PackedScene" uid="uid://b8bl3fg1j15cw" path="res://Scenes/Obstacle.tscn" id="4_2tp6q"]
+[ext_resource type="Script" uid="uid://cldikdy7y7gym" path="res://API/Scoreboard.cs" id="5_kwfy1"]
+[ext_resource type="StyleBox" uid="uid://ddubwu2xifgsa" path="res://Assets/ButtonStyle_Base.tres" id="6_ixjr5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el57v"]
+size = Vector2(1362.5, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdgab"]
+size = Vector2(80, 800)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6js8"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.403922)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8n5pp"]
+bg_color = Color(0.599233, 0.082279, 0.0834944, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.165656, 0.165656, 0.165656, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo8fx"]
+bg_color = Color(0.497208, 0.060611, 0.0617372, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.165656, 0.165656, 0.165656, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(0, 3)
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_u810s")
+tlTankRes = ExtResource("2_u810s")
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Node2D" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+
+[node name="Rectangle1" parent="Obstacles/Node2D" index="0"]
+offset_right = 1320.0
+
+[node name="CollisionShape2D" parent="Obstacles/Node2D" index="1"]
+position = Vector2(640, 0)
+shape = SubResource("RectangleShape2D_el57v")
+
+[node name="Node2D2" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+position = Vector2(0, 720)
+
+[node name="Rectangle1" parent="Obstacles/Node2D2" index="0"]
+offset_right = 1320.0
+
+[node name="CollisionShape2D" parent="Obstacles/Node2D2" index="1"]
+position = Vector2(640, 0)
+shape = SubResource("RectangleShape2D_el57v")
+
+[node name="Node2D4" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+
+[node name="Rectangle1" parent="Obstacles/Node2D4" index="0"]
+custom_minimum_size = Vector2(0, 800)
+
+[node name="CollisionShape2D" parent="Obstacles/Node2D4" index="1"]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_sdgab")
+
+[node name="Node2D5" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+position = Vector2(1280, 0)
+
+[node name="Rectangle1" parent="Obstacles/Node2D5" index="0"]
+custom_minimum_size = Vector2(0, 800)
+
+[node name="CollisionShape2D" parent="Obstacles/Node2D5" index="1"]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_sdgab")
+
+[node name="Node2D3" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+position = Vector2(640, 385)
+
+[node name="ScoreboardContainer" type="PanelContainer" parent="."]
+top_level = true
+offset_right = 171.0
+offset_bottom = 144.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x6js8")
+
+[node name="Scoreboard" type="VBoxContainer" parent="ScoreboardContainer"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 2
+script = ExtResource("5_kwfy1")
+
+[node name="Label" type="Label" parent="ScoreboardContainer/Scoreboard"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Scoreboard"
+
+[node name="TimeLeft" type="Label" parent="ScoreboardContainer/Scoreboard"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "0:00"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ScoreboardContainer/Scoreboard"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_styles/hover = SubResource("StyleBoxFlat_8n5pp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vo8fx")
+theme_override_styles/normal = ExtResource("6_ixjr5")
+text = "Restart"
+
+[node name="TanksScoreContainer" type="VBoxContainer" parent="ScoreboardContainer/Scoreboard"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TopLeftTank" parent="." instance=ExtResource("2_8uoga")]
+position = Vector2(150, 150)
+rotation = 2.35619
+
+[node name="BottomLeftTank" parent="." instance=ExtResource("2_8uoga")]
+position = Vector2(150, 570)
+rotation = 0.785398
+
+[node name="BottomRightTank" parent="." instance=ExtResource("2_8uoga")]
+position = Vector2(1130, 570)
+rotation = -0.785398
+
+[node name="TopRightTank" parent="." instance=ExtResource("2_8uoga")]
+position = Vector2(1130, 150)
+rotation = -2.35619
+
+[connection signal="pressed" from="ScoreboardContainer/Scoreboard/Button" to="ScoreboardContainer/Scoreboard" method="RestartPressed"]
+
+[editable path="Obstacles/Node2D"]
+[editable path="Obstacles/Node2D2"]
+[editable path="Obstacles/Node2D4"]
+[editable path="Obstacles/Node2D5"]
