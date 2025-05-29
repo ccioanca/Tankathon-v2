@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=4 format=3 uid="uid://cti38ubtxn5r6"]
+
+[ext_resource type="Script" uid="uid://ds2f306tb3ciw" path="res://Scripts/battle_info.gd" id="1_umlhr"]
+[ext_resource type="Script" uid="uid://bm7sq0cc0elnr" path="res://Scripts/team_info.gd" id="2_xevdk"]
+[ext_resource type="Resource" uid="uid://dc2qux0de6k48" path="res://TeamAssets/test_team.tres" id="3_xevdk"]
+
+[resource]
+script = ExtResource("1_umlhr")
+teams = Array[ExtResource("2_xevdk")]([ExtResource("3_xevdk"), ExtResource("3_xevdk"), ExtResource("3_xevdk"), ExtResource("3_xevdk")])
+metadata/_custom_type_script = "uid://ds2f306tb3ciw"

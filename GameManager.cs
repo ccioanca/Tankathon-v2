@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,10 +13,7 @@ public partial class GameManager : Node2D
 	//TODO: Actually name all these resources based on the team names
 	[ExportGroup("R1 Fight")]
 	[Export]
-	Resource tlTankResR1;
-	Resource trTankResR1;
-	Resource blTankResR1;
-	Resource brTankResR1;
+	Resource r1Battle;
 
 	// [ExportGroup("R2 Fight")]
 	// [Export]
@@ -44,10 +42,10 @@ public partial class GameManager : Node2D
 		//Test Fight
 		_tankTypes = new List<TeamModel>
 		{
-			new TeamModel(typeof(DumTank), tlTankResR1),
-			new TeamModel(typeof(DumTank), tlTankResR1),
-			new TeamModel(typeof(DumTank), tlTankResR1),
-			new TeamModel(typeof(DumTank), tlTankResR1)
+			new TeamModel(typeof(DumTank), r1Battle.Get("teams").As<Godot.Collections.Array>()[0].As<Godot.Resource>()),
+			new TeamModel(typeof(DumTank), r1Battle.Get("teams").As<Godot.Collections.Array>()[1].As<Godot.Resource>()),
+			new TeamModel(typeof(DumTank), r1Battle.Get("teams").As<Godot.Collections.Array>()[2].As<Godot.Resource>()),
+			new TeamModel(typeof(DumTank), r1Battle.Get("teams").As<Godot.Collections.Array>()[3].As<Godot.Resource>())
 		};
 
 		//Fight 1
@@ -87,19 +85,23 @@ public partial class GameManager : Node2D
 		// };
 
 		tlTank = GetNode<TheTank>("TopLeftTank");
-		trTank = GetNode<TheTank>("TopRightTank");
-		blTank = GetNode<TheTank>("BottomLeftTank");
 		brTank = GetNode<TheTank>("BottomRightTank");
+		trTank = GetNodeOrNull<TheTank>("TopRightTank");
+		blTank = GetNodeOrNull<TheTank>("BottomLeftTank");
 
 
 		tlTank.thisTank = Activator.CreateInstance(_tankTypes[0].tankType) as ITank;
-		trTank.thisTank = Activator.CreateInstance(_tankTypes[1].tankType) as ITank;
-		blTank.thisTank = Activator.CreateInstance(_tankTypes[2].tankType) as ITank;
-		brTank.thisTank = Activator.CreateInstance(_tankTypes[3].tankType) as ITank;
+		brTank.thisTank = Activator.CreateInstance(_tankTypes[1].tankType) as ITank;
+		if(trTank != null)
+			trTank.thisTank = Activator.CreateInstance(_tankTypes[2].tankType) as ITank;
+		if(blTank != null)
+			blTank.thisTank = Activator.CreateInstance(_tankTypes[3].tankType) as ITank;
 
 		tlTank.Init(_tankTypes[0].tankInfo);
-		trTank.Init(_tankTypes[1].tankInfo);
-		blTank.Init(_tankTypes[2].tankInfo);
-		brTank.Init(_tankTypes[3].tankInfo);
+		brTank.Init(_tankTypes[1].tankInfo);
+		if(trTank != null)
+			trTank.Init(_tankTypes[2].tankInfo);
+		if(blTank != null)
+			blTank.Init(_tankTypes[3].tankInfo);
 	}
 }

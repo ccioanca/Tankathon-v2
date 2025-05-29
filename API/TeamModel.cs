@@ -2,7 +2,7 @@ using System;
 
 namespace Tankathon.API;
 
-public class TeamModel
+public partial class TeamModel
 {
     public Type tankType;
     public Godot.Resource tankInfo;
