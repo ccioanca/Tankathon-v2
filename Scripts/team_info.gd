@@ -4,3 +4,4 @@ class_name TeamInfo
 
 @export var shootSound: AudioStream
 @export var deathSound: AudioStream
+@export var logo: Texture
