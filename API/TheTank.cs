@@ -53,6 +53,10 @@ public partial class TheTank : CharacterBody2D, IEntity
 	AudioStreamPlayer shootPlayer = new AudioStreamPlayer();
 	AudioStreamPlayer deathPlayer = new AudioStreamPlayer();
 
+	//Treads
+	private CpuParticles2D treadsL;
+	private CpuParticles2D treadsR;
+
     public override void _Ready()
 	{
 		_passedActions = GetNode<Actions>("Actions");
@@ -74,6 +78,10 @@ public partial class TheTank : CharacterBody2D, IEntity
 		//SFX
 		AddChild(shootPlayer);
 		AddChild(deathPlayer);
+
+		//Treads
+		treadsL = GetNode<Node2D>("TreadsL").GetChild<CpuParticles2D>(0);
+		treadsR = GetNode<Node2D>("TreadsR").GetChild<CpuParticles2D>(0);
 
 		base._Ready();
 	}
@@ -104,7 +112,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 		base._PhysicsProcess(delta);
 	}
 
-	internal void Init(AudioStream _shoot = null, AudioStream _death = null)
+	internal void Init(Godot.Resource teamInfo = null)
 	{
 		_healthBar.Value = health;
 		thisTank.Setup(_tankSetup);
@@ -116,10 +124,14 @@ public partial class TheTank : CharacterBody2D, IEntity
 		_tankLabel.Text = _tankSetup.name;
 
 		//setup sounds
-		shootSound = _shoot;
-		deathSound = _death;
+		shootSound = teamInfo.Get("shootSound").As<AudioStream>();
+		deathSound = teamInfo.Get("deathSound").As<AudioStream>();
 		shootPlayer.Stream = shootSound;
-		deathPlayer.Stream = deathSound;		
+		deathPlayer.Stream = deathSound;
+
+		//setup team colors
+		((ShaderMaterial)GetNode<Sprite2D>("TankSprite").Material).SetShaderParameter("_newcolor1", Color.FromHtml(_tankSetup.primaryColor));
+        ((ShaderMaterial)GetNode<Sprite2D>("TankSprite").Material).SetShaderParameter("_newcolor2", Color.FromHtml(_tankSetup.secondaryColor));	
     }
 
 	internal void Shoot()
@@ -194,13 +206,23 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 		return entityInPath;
     }
+	
+	internal void Tread(API.Rotation rotation)
+	{
+        treadsL.Emitting = false;
+        treadsR.Emitting = false;
+        if(rotation == API.Rotation.CW)
+			treadsL.Emitting = true;
+		if(rotation == API.Rotation.CCW)
+			treadsR.Emitting = true;
+	}
 
     // public override void _Draw()
-    // {
+	// {
 	// 	DrawLine(new Vector2(0, 0), new Vector2(0, -1500), Colors.Green, 2); //Middle
 	// 	DrawLine(new Vector2(0, 0), new Vector2(150, -1500), Colors.Red, 2); //Right
 	// 	DrawLine(new Vector2(0, 0), new Vector2(-150, -1500), Colors.Blue, 2); //Left
-    // }
+	// }
 
 	internal void SetupScoreboard(TankSetup setup)
 	{
@@ -208,11 +230,11 @@ public partial class TheTank : CharacterBody2D, IEntity
 		scorePanel.Set("tank_health", health);
 		scorePanel.Set("tank_name", setup.name.Length > 12 ? setup.name.Substring(0, 10) + "..." : setup.name);
 
-        _tankScoreContainer.AddChild(scorePanel);
+		_tankScoreContainer.AddChild(scorePanel);
 		scorePanel.Call("change_health", health);
 		scorePanel.Call("change_panel_color", setup.primaryColor, setup.secondaryColor);
 
-    }
+	}
 
     internal void Hurt()
 	{

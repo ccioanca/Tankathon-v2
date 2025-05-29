@@ -77,6 +77,7 @@ internal partial class Actions : Node2D, IActions
 
     public bool MoveForward() 
 	{
+		tank.Tread(API.Rotation.CCW & API.Rotation.CW);
 		tank._velocity = -tank.Transform.Y * tankSpeed * (float)GetPhysicsProcessDeltaTime();
 		if (tank.col)
 			return false;
@@ -88,10 +89,12 @@ internal partial class Actions : Node2D, IActions
 		if (!canRotate)
             return tank.RotationDegrees;
 
+		tank.Tread(direction);
+
         if (direction == API.Rotation.CW)
-            tank.Rotate(rotateSpeed * (float)GetPhysicsProcessDeltaTime());
+			tank.Rotate(rotateSpeed * (float)GetPhysicsProcessDeltaTime());
 		else if (direction == API.Rotation.CCW)
-            tank.Rotate(-rotateSpeed * (float)GetPhysicsProcessDeltaTime());
+			tank.Rotate(-rotateSpeed * (float)GetPhysicsProcessDeltaTime());
         
 		canRotate = false;
 

@@ -97,9 +97,9 @@ public partial class GameManager : Node2D
 		blTank.thisTank = Activator.CreateInstance(_tankTypes[2].tankType) as ITank;
 		brTank.thisTank = Activator.CreateInstance(_tankTypes[3].tankType) as ITank;
 
-		tlTank.Init(_tankTypes[0].tankInfo.Get("shootSound").As<AudioStream>(), _tankTypes[0].tankInfo.Get("deathSound").As<AudioStream>());
-		trTank.Init(_tankTypes[1].tankInfo.Get("shootSound").As<AudioStream>(), _tankTypes[0].tankInfo.Get("deathSound").As<AudioStream>());
-		blTank.Init(_tankTypes[2].tankInfo.Get("shootSound").As<AudioStream>(), _tankTypes[0].tankInfo.Get("deathSound").As<AudioStream>());
-		brTank.Init(_tankTypes[3].tankInfo.Get("shootSound").As<AudioStream>(), _tankTypes[0].tankInfo.Get("deathSound").As<AudioStream>());
+		tlTank.Init(_tankTypes[0].tankInfo);
+		trTank.Init(_tankTypes[1].tankInfo);
+		blTank.Init(_tankTypes[2].tankInfo);
+		brTank.Init(_tankTypes[3].tankInfo);
 	}
 }
