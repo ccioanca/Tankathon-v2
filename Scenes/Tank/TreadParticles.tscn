@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct3r80a6a4li0"]
+
+[ext_resource type="Texture2D" uid="uid://d17pela500701" path="res://Assets/Poofs/Poof1.png" id="1_ltk3t"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hlrme"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Treads" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -10
+material = SubResource("CanvasItemMaterial_hlrme")
+rotation = -0.00180145
+emitting = false
+amount = 3
+texture = ExtResource("1_ltk3t")
+particle_flag_align_y = true
+direction = Vector2(-1, 1)
+spread = 16.36
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_max = 0.4
