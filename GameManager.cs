@@ -48,42 +48,6 @@ public partial class GameManager : Node2D
 			new TeamModel(typeof(DumTank), r1Battle.Get("teams").As<Godot.Collections.Array>()[3].As<Godot.Resource>())
 		};
 
-		//Fight 1
-		// _tankTypes = new List<TeamModel>
-		// {
-		// 	new TeamModel(typeof(DumTank), tlTankResR1),
-		// 	new TeamModel(typeof(DumTank), trTankResR1),
-		// 	new TeamModel(typeof(DumTank), blTankResR1),
-		// 	new TeamModel(typeof(DumTank), brTankResR1)
-		// };
-
-		//Fight 2
-		// _tankTypes = new List<TeamModel>
-		// {
-		// 	new TeamModel(typeof(DumTank), tlTankRes),
-		// 	new TeamModel(typeof(DumTank), tlTankRes),
-		// 	new TeamModel(typeof(DumTank), tlTankRes),
-		// 	new TeamModel(typeof(DumTank), tlTankRes)
-		// };
-
-		//Fight 3
-		// _tankTypes = new List<TeamModel>
-		// {
-		// 	new TeamModel(typeof(DumTank), tlTankRes),
-		// 	new TeamModel(typeof(DumTank), tlTankRes),
-		// 	new TeamModel(typeof(DumTank), tlTankRes),
-		// 	new TeamModel(typeof(DumTank), tlTankRes)
-		// };
-
-		//Fight 4
-		// _tankTypes = new List<TeamModel>
-		// {
-		// 	new TeamModel(typeof(DumTank), tlTankRes),
-		// 	new TeamModel(typeof(DumTank), tlTankRes),
-		// 	new TeamModel(typeof(DumTank), tlTankRes),
-		// 	new TeamModel(typeof(DumTank), tlTankRes)
-		// };
-
 		tlTank = GetNode<TheTank>("TopLeftTank");
 		brTank = GetNode<TheTank>("BottomRightTank");
 		trTank = GetNodeOrNull<TheTank>("TopRightTank");
