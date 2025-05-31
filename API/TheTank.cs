@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Tankathon.Scripts;
 
 namespace Tankathon.API.Internal;
 
@@ -112,7 +113,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 		base._PhysicsProcess(delta);
 	}
 
-	internal void Init(Godot.Resource teamInfo = null)
+	internal void Init(TeamData teamInfo = null)
 	{
 		_healthBar.Value = health;
 		thisTank.Setup(_tankSetup);

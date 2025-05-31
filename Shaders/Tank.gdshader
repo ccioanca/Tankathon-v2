@@ -12,14 +12,14 @@ void vertex() {
 void fragment() {
 	// Called for every pixel the material is visible on.
 	vec4 cur_color = texture(TEXTURE, UV);
-	
+
 	if(cur_color == _oldcolor1)
 	{
 		COLOR = _newcolor1;
 	}
 	else if(cur_color == _oldcolor2)
 	{
-		COLOR = _newcolor2;		
+		COLOR = _newcolor2;
 	}
 }
 
