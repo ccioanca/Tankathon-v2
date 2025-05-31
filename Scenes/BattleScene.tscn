@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
-[ext_resource type="Resource" uid="uid://cti38ubtxn5r6" path="res://TeamAssets/battle_test.tres" id="2_u810s"]
+[ext_resource type="Resource" uid="uid://dsh2l1q7exoxi" path="res://TeamAssets/test_battle.tres" id="2_u810s"]
 [ext_resource type="PackedScene" uid="uid://b8bl3fg1j15cw" path="res://Scenes/Obstacle.tscn" id="4_2tp6q"]
 [ext_resource type="Script" uid="uid://cldikdy7y7gym" path="res://API/Scoreboard.cs" id="5_kwfy1"]
 [ext_resource type="StyleBox" uid="uid://ddubwu2xifgsa" path="res://Assets/ButtonStyle_Base.tres" id="6_ixjr5"]
@@ -151,7 +151,6 @@ rotation = 2.35619
 [node name="BottomRightTank" parent="." instance=ExtResource("2_8uoga")]
 position = Vector2(1130, 570)
 rotation = -0.785398
-scale = Vector2(1, 1)
 
 [node name="BottomLeftTank" parent="." instance=ExtResource("2_8uoga")]
 position = Vector2(150, 570)
