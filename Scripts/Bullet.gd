@@ -9,7 +9,7 @@ func _physics_process(delta):
 	position += -transform.y * 250 * delta
 
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	print("EXPLODE");
 	#area.explode()
 	queue_free() # delete the bullet
