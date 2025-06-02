@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://h24h80a7tap7"]
+[gd_scene load_steps=28 format=3 uid="uid://h24h80a7tap7"]
 
 [ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
@@ -96,7 +96,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.00606668, -0.113248, 0, -0.127267, 0.00213673, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 1.5)
+"times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -105,9 +105,9 @@ tracks/1/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/h_s
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 2),
+"handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(2430, -0.25, 0, 0.25, 0, 2430, -0.25, 0, 0.562877, -92.5295, 36.3463, -0.0944531, -573.462, 0, 0),
-"times": PackedFloat32Array(0, 1.27858, 1.83591)
+"times": PackedFloat32Array(0, 0.778582, 1.33591)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -116,9 +116,9 @@ tracks/2/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/v_s
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(2, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(5.72485, 0, 0, 0.0694284, -12.3373, -6.61243, -0.0639049, -49.3491, 0, 0),
-"times": PackedFloat32Array(1.83333, 1.93333)
+"times": PackedFloat32Array(1.33333, 1.43333)
 }
 
 [sub_resource type="Animation" id="Animation_ixjr5"]
@@ -189,11 +189,38 @@ tracks/5/keys = {
 "points": PackedFloat32Array(100, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BattlePanel:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_x5p3t"]
+resource_name = "intro_enter"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BattlePanel:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(1, 0, 0, 0.1, 0, 0, -0.3, 0.00650117, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1yevk"]
 _data = {
 &"RESET": SubResource("Animation_ixjr5"),
-&"intro": SubResource("Animation_kwfy1")
+&"intro": SubResource("Animation_kwfy1"),
+&"intro_enter": SubResource("Animation_x5p3t")
 }
 
 [sub_resource type="Animation" id="Animation_1yevk"]
@@ -206,9 +233,9 @@ tracks/0/path = NodePath("Container:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.0333333, 0, 1, -0.0333333, 0, 0.233333, 0, 1, -0.233333, 0, 0.0555556, 0, 0, -0.0555556, 0, 0.0111111, 0, 0, -0.0111111, 0, 0.0444444, 0, 1, -0.0444444, 0, 0.233333, 0, 1, -0.233333, 0, 0.0555555, 0, 0, -0.0555556, 0, 0.0111111, 0, 0, -0.0111111, 0, 0.0444444, 0, 1, -0.0444444, 0, 0.233333, 0, 1, -0.233333, 0, 0.0555555, 0, 0, -0.0555556, 0, 0.0111111, 0, 0, -0.0111111, 0, 0.0444444, 0, 1, -0.0444444, 0, 0.233333, 0, 1, -0.233333, 0, 0.0555555, 0, 0, -0.0555555, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.8, 0.966667, 1, 1.13333, 1.83333, 2, 2.03333, 2.16667, 2.86667, 3, 3.03333, 3.16667, 3.86667, 4)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -217,9 +244,9 @@ tracks/1/path = NodePath("Container/Label:theme_override_font_sizes/font_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.2, 0.468093, 100, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 0, 0, 0, 0.2, 0.468093, 100, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 0, 0, 0, 0.2, 0.468093, 100, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 0, 0, 0, 0.2, 0.468093, 126, -0.133333, 43.6404, 0, 0, 126, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.966667, 1, 1.23333, 2, 2.03333, 2.26667, 3, 3.03333, 3.26667, 4)
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -228,10 +255,10 @@ tracks/2/path = NodePath("Container/Label:text")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2.03333, 3.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": ["3"]
+"values": ["3", "2", "1", "GO!"]
 }
 
 [sub_resource type="Animation" id="Animation_0avxp"]
@@ -244,7 +271,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
@@ -377,7 +404,6 @@ position = Vector2(1130, 150)
 rotation = -2.35619
 
 [node name="IntroLayer" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("7_8uoga")
 
 [node name="BattlePanel" type="Panel" parent="IntroLayer"]
@@ -541,6 +567,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IntroPanel" type="Panel" parent="IntroLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -552,25 +579,30 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2tp6q")
 libraries = {
 &"": SubResource("AnimationLibrary_1yevk")
 }
+autoplay = "intro"
 
 [node name="CountdownLayer" type="CanvasLayer" parent="."]
 
 [node name="Container" type="Control" parent="CountdownLayer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="CountdownLayer/Container"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 599.5
-offset_top = 290.5
-offset_right = 640.5
-offset_bottom = 389.5
+offset_left = -20.5
+offset_top = -49.5
+offset_right = 20.5
+offset_bottom = 49.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

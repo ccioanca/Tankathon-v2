@@ -101,6 +101,9 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 	public override void _PhysicsProcess(double delta)
 	{
+        if(!GetTree().Root.GetNode<GameManager>("GameScene").GAMESTART)
+			return;
+
 		thisTank.Do(_passedActions, _scoreboard);
 		var k2d = MoveAndCollide(_velocity);
 		if (k2d != null)

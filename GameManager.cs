@@ -39,6 +39,10 @@ public partial class GameManager : Node2D
 	//list of combatants
 	private List<TeamData> _tankTypes;
 
+	//Game state
+	public bool GAMESTART = false;
+
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
