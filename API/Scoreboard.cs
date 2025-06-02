@@ -14,50 +14,47 @@ namespace Tankathon.API
 		public int timeLeft => (int)_timer.TimeLeft;
 
 
-        //private members
-        Timer _timer = new Timer();
+		//private members
+		Timer _timer = new Timer();
 		Label _timeLeft;
 		//Label _blueScore;
 		//Label _redScore;
 
-        public override void _Ready()
+		public override void _Ready()
 		{
 			base._Ready();
 
 			//Add the 5 Minute Round Timer
-            AddChild(_timer);
-            _timer.Timeout += () => Timeout();
-            _timer.Start(5*60); //start the 5 minute timeLeft
+			AddChild(_timer);
+			_timer.Timeout += () => Timeout();
 			_timeLeft = GetNode<Label>("TimeLeft");
+		}
 
-			//score
-            //_blueScore = GetNode<Label>("Panel/Panel2/BlueScore");
-			//_redScore = GetNode<Label>("Panel/Panel/RedScore");
-
-        }
-
-        public override void _Process(double delta)
+		public override void _Process(double delta)
 		{
 			base._Process(delta);
 		}
 
-        public override void _PhysicsProcess(double delta)
-        {
-            base._PhysicsProcess(delta);
+		public override void _PhysicsProcess(double delta)
+		{
+			base._PhysicsProcess(delta);
 
 			_timeLeft.Text = TimeSpan.FromSeconds(_timer.TimeLeft).ToString(@"mm\:ss");
-        }
+		}
 
-        private void Timeout()
+		private void Timeout()
 		{
-			//timeLeft is done, restart? 
-			GD.Print("Restarting");
-            GetTree().ReloadCurrentScene();
-        }
+			Engine.TimeScale = 0;
+		}
 		public void RestartPressed()
 		{
-            GetTree().ReloadCurrentScene();
-        }
+			GetTree().ReloadCurrentScene();
+		}
+
+		public void StartTimer()
+		{
+			_timer.Start(3 * 60); //start the 3 minute timer
+		}
         
     }
 }

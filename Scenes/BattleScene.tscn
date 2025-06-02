@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://h24h80a7tap7"]
+[gd_scene load_steps=29 format=3 uid="uid://h24h80a7tap7"]
 
 [ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://2s17p84n040a" path="res://icon.svg" id="8_47u5s"]
 [ext_resource type="FontFile" uid="uid://d0nva4s6trjsg" path="res://Other/Broken.otf" id="8_kwfy1"]
 [ext_resource type="Theme" uid="uid://ddmf2a442qko" path="res://Other/intro_screen_theme.tres" id="9_2tp6q"]
+[ext_resource type="FontFile" uid="uid://ctonyk3pm50er" path="res://Other/Revamped.otf" id="11_ixjr5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el57v"]
 size = Vector2(1362.5, 81)
@@ -86,7 +87,7 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_kwfy1"]
 resource_name = "intro"
-length = 10.0
+length = 2.0
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -200,6 +201,18 @@ tracks/6/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../CountdownLayer/AnimationPlayer:current_animation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
 
 [sub_resource type="Animation" id="Animation_x5p3t"]
 resource_name = "intro_enter"
@@ -214,6 +227,18 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(2, 2),
 "points": PackedFloat32Array(1, 0, 0, 0.1, 0, 0, -0.3, 0.00650117, 0, 0),
 "times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CountdownLayer/AnimationPlayer:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"countdown"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1yevk"]
@@ -245,7 +270,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, 0, 0, 0.2, 0.468093, 100, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 0, 0, 0, 0.2, 0.468093, 100, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 0, 0, 0, 0.2, 0.468093, 100, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 0, 0, 0, 0.2, 0.468093, 126, -0.133333, 43.6404, 0, 0, 126, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.2, 0.468093, 102, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 102, 0, 0, 0.2, 0.468093, 102, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 102, 0, 0, 0.2, 0.468093, 102, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 102, 0, 0, 0.2, 0.468093, 102, -0.133333, 43.6404, 0, 0, 102, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.2, 0.966667, 1, 1.23333, 2, 2.03333, 2.26667, 3, 3.03333, 3.26667, 4)
 }
 tracks/2/type = "value"
@@ -259,6 +284,32 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["3", "2", "1", "GO!"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:GAMESTART")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Scoreboard")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartTimer"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_0avxp"]
@@ -296,6 +347,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["3"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:GAMESTART")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x5p3t"]
@@ -458,18 +521,18 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer"]
+[node name="TLContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TLLogo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer/TLContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("8_47u5s")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer/TLContainer"]
 layout_mode = 2
 theme = ExtResource("9_2tp6q")
 text = "TEAM NAME"
@@ -488,17 +551,17 @@ theme_override_constants/margin_bottom = 50
 [node name="HBoxContainer" type="HBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer"]
+[node name="TRContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TRLogo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/TRContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("8_47u5s")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/TRContainer"]
 layout_mode = 2
 theme = ExtResource("9_2tp6q")
 text = "TEAM NAME"
@@ -518,18 +581,18 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer"]
+[node name="BLContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="BLLogo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer/BLContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("8_47u5s")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer/BLContainer"]
 layout_mode = 2
 theme = ExtResource("9_2tp6q")
 text = "TEAM NAME"
@@ -548,18 +611,18 @@ theme_override_constants/margin_bottom = 50
 [node name="HBoxContainer" type="HBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer"]
+[node name="BRContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="BRLogo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer/BRContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("8_47u5s")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer/BRContainer"]
 layout_mode = 2
 theme = ExtResource("9_2tp6q")
 text = "TEAM NAME"
@@ -609,6 +672,7 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("11_ixjr5")
 theme_override_font_sizes/font_size = 72
 text = "3"
 horizontal_alignment = 1

@@ -40,6 +40,7 @@ public partial class GameManager : Node2D
 	private List<TeamData> _tankTypes;
 
 	//Game state
+	[Export]
 	public bool GAMESTART = false;
 
 
