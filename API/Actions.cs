@@ -34,7 +34,9 @@ internal partial class Actions : Node2D, IActions
 		{
 			rotation = tank.RotationDegrees,
 			xPos = tank.Position.X,
-			yPos = tank.Position.Y
+			yPos = tank.Position.Y,
+			healthCurrent = tank.health,
+			score = tank.points
 		};
 
 		//set the cooldown timeLeft for shooting
@@ -59,6 +61,9 @@ internal partial class Actions : Node2D, IActions
         _stats.rotation = tank.RotationDegrees;
         _stats.xPos = tank.Position.X;
         _stats.yPos = tank.Position.Y;
+		_stats.healthCurrent = tank.health;
+		_stats.score = tank.points;
+
 
         base._PhysicsProcess(delta);
 

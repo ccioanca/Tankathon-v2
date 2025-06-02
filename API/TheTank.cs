@@ -14,8 +14,8 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 	public bool col = false;
     public Vector2 _velocity = Vector2.Zero;
-	private int health = 10;
-	private int points = 0;
+	public int health = 10;
+	public int points = 0;
 	
     public ITank thisTank;
 	Actions actions;
