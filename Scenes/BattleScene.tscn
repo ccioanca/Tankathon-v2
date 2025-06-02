@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://h24h80a7tap7"]
+[gd_scene load_steps=31 format=3 uid="uid://h24h80a7tap7"]
 
 [ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
@@ -15,7 +15,7 @@
 size = Vector2(1362.5, 81)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdgab"]
-size = Vector2(80, 800)
+size = Vector2(171, 800)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6js8"]
 content_margin_left = 10.0
@@ -76,8 +76,14 @@ gradient = SubResource("Gradient_kwfy1")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1yevk"]
 texture = SubResource("GradientTexture1D_ixjr5")
 
-[sub_resource type="LabelSettings" id="LabelSettings_2tp6q"]
+[sub_resource type="LabelSettings" id="LabelSettings_kwfy1"]
 font_size = 72
+font_color = Color(0.694118, 0.764706, 0.698039, 1)
+outline_size = 35
+outline_color = Color(0.270588, 0.329412, 0.27451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ixjr5"]
+font_size = 62
 outline_size = 35
 outline_color = Color(0, 0, 0, 1)
 
@@ -87,43 +93,6 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tp6q"]
 bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_kwfy1"]
-resource_name = "intro"
-length = 2.0
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("IntroPanel:theme_override_styles/panel:bg_color:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.00606668, -0.113248, 0, -0.127267, 0.00213673, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/h_separation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(2430, -0.25, 0, 0.25, 0, 2430, -0.25, 0, 0.562877, -92.5295, 36.3463, -0.0944531, -573.462, 0, 0),
-"times": PackedFloat32Array(0, 0.778582, 1.33591)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/v_separation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(5.72485, 0, 0, 0.0694284, -12.3373, -6.61243, -0.0639049, -49.3491, 0, 0),
-"times": PackedFloat32Array(1.33333, 1.43333)
-}
 
 [sub_resource type="Animation" id="Animation_ixjr5"]
 length = 0.001
@@ -216,6 +185,91 @@ tracks/7/keys = {
 "update": 1,
 "values": [""]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BattlePanel/BattleName:label_settings:font_size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [62]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BattlePanel/BattleName:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kwfy1"]
+resource_name = "intro"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IntroPanel:theme_override_styles/panel:bg_color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.00606668, -0.113248, 0, -0.127267, 0.00213673, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.7)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/h_separation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(2430, -0.25, 0, 0.25, 0, 2430, -0.25, 0, 0.562877, -92.5295, 36.3463, -0.0944531, -573.462, 0, 0),
+"times": PackedFloat32Array(0, 0.478581, 1.03591)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/v_separation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(5.72485, 0, 0, 0.0694284, -12.3373, -6.61243, -0.0639049, -49.3491, 0, 0),
+"times": PackedFloat32Array(1.03333, 1.13333)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BattlePanel/BattleName:label_settings:font_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.23333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1, 1, 62]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BattlePanel/BattleName:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.16667, 1.26667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_x5p3t"]
 resource_name = "intro_enter"
@@ -249,6 +303,55 @@ _data = {
 &"RESET": SubResource("Animation_ixjr5"),
 &"intro": SubResource("Animation_kwfy1"),
 &"intro_enter": SubResource("Animation_x5p3t")
+}
+
+[sub_resource type="Animation" id="Animation_0avxp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Container:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container/Label:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(72, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Container/Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["3"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:GAMESTART")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_1yevk"]
@@ -315,55 +418,6 @@ tracks/4/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_0avxp"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Container:modulate:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Container/Label:theme_override_font_sizes/font_size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(72, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Container/Label:text")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["3"]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("..:GAMESTART")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x5p3t"]
 _data = {
 &"RESET": SubResource("Animation_0avxp"),
@@ -409,9 +463,11 @@ position = Vector2(1280, 0)
 
 [node name="Rectangle1" parent="Obstacles/Node2D5" index="0"]
 custom_minimum_size = Vector2(0, 800)
+offset_right = 192.0
+offset_bottom = 760.0
 
 [node name="CollisionShape2D" parent="Obstacles/Node2D5" index="1"]
-position = Vector2(0, 360)
+position = Vector2(45.5, 360)
 shape = SubResource("RectangleShape2D_sdgab")
 
 [node name="Node2D3" parent="Obstacles" instance=ExtResource("4_2tp6q")]
@@ -419,7 +475,9 @@ position = Vector2(640, 385)
 
 [node name="ScoreboardContainer" type="PanelContainer" parent="."]
 top_level = true
-offset_right = 171.0
+z_index = 100
+offset_left = 1241.0
+offset_right = 1412.0
 offset_bottom = 144.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x6js8")
 
@@ -436,7 +494,7 @@ text = "Scoreboard"
 
 [node name="TimeLeft" type="Label" parent="ScoreboardContainer/Scoreboard"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "0:00"
 horizontal_alignment = 1
 
@@ -498,9 +556,29 @@ theme_override_constants/outline_size = 50
 theme_override_constants/shadow_outline_size = 35
 theme_override_fonts/font = ExtResource("8_kwfy1")
 text = "VS"
-label_settings = SubResource("LabelSettings_2tp6q")
+label_settings = SubResource("LabelSettings_kwfy1")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BattleName" type="Label" parent="IntroLayer/BattlePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.5
+offset_top = 33.0
+offset_right = 47.5
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 50
+theme_override_constants/shadow_outline_size = 35
+theme_override_fonts/font = ExtResource("8_kwfy1")
+text = "Battle Name"
+label_settings = SubResource("LabelSettings_ixjr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="LogoContainer" type="GridContainer" parent="IntroLayer/BattlePanel"]
 layout_mode = 1
@@ -517,7 +595,7 @@ columns = 2
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 100
+theme_override_constants/margin_right = 150
 theme_override_constants/margin_bottom = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer"]
@@ -546,7 +624,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 100
+theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
@@ -577,7 +655,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 100
+theme_override_constants/margin_right = 150
 theme_override_constants/margin_bottom = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3"]
@@ -606,7 +684,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 100
+theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50

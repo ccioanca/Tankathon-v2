@@ -6,6 +6,9 @@ namespace Tankathon.Scripts;
 public partial class BattleInfo : Resource
 {
     [Export]
+    public string battleName;
+
+    [Export]
     public Godot.Collections.Array<TeamData> teams;
 
     public BattleInfo()

@@ -27,6 +27,8 @@ func _ready() -> void:
 	blTeam.get_node("Label").text = battleInfo.teams[2].teamName
 	brTeam.get_node("Label").text = battleInfo.teams[3].teamName
 
+	get_node("%BattleName").text = battleInfo.battleName
+
 	pass
 
 func _process(_delta: float) -> void:
