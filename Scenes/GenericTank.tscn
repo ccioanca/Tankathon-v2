@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cewlmkf8acdda" path="res://API/Actions.cs" id="3_sgv2t"]
 [ext_resource type="Theme" uid="uid://bi2xlu10nuh8x" path="res://Assets/Progress_Base.tres" id="4_1r4k5"]
 [ext_resource type="PackedScene" uid="uid://ct3r80a6a4li0" path="res://Scenes/Tank/TreadParticles.tscn" id="6_40be6"]
-[ext_resource type="Script" uid="uid://c70sue1xgtecs" path="res://Scripts/track.gd" id="7_44y1t"]
+[ext_resource type="Script" path="res://Scripts/track.gd" id="7_44y1t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_40be6"]
 shader = ExtResource("2_btl5t")

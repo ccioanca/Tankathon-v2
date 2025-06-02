@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://h24h80a7tap7"]
+[gd_scene load_steps=31 format=3 uid="uid://oaqnkya2frwb"]
 
 [ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8bl3fg1j15cw" path="res://Scenes/Obstacle.tscn" id="4_2tp6q"]
 [ext_resource type="Script" uid="uid://cldikdy7y7gym" path="res://API/Scoreboard.cs" id="5_kwfy1"]
 [ext_resource type="StyleBox" uid="uid://ddubwu2xifgsa" path="res://Assets/ButtonStyle_Base.tres" id="6_ixjr5"]
-[ext_resource type="Script" uid="uid://ch4kb6ckoy5o7" path="res://Scripts/intro_layer.gd" id="7_8uoga"]
+[ext_resource type="Script" path="res://Scripts/intro_layer.gd" id="7_8uoga"]
 [ext_resource type="FontFile" uid="uid://d0nva4s6trjsg" path="res://Other/Broken.otf" id="8_kwfy1"]
 [ext_resource type="Theme" uid="uid://ddmf2a442qko" path="res://Other/intro_screen_theme.tres" id="9_2tp6q"]
 [ext_resource type="FontFile" uid="uid://ctonyk3pm50er" path="res://Other/Revamped.otf" id="11_ixjr5"]
@@ -406,7 +406,7 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("%Scoreboard")
+tracks/4/path = NodePath("../ScoreboardContainer/Scoreboard")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -525,7 +525,6 @@ position = Vector2(1130, 150)
 rotation = -2.35619
 
 [node name="IntroLayer" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("7_8uoga")
 
 [node name="BattlePanel" type="Panel" parent="IntroLayer"]
@@ -728,7 +727,6 @@ libraries = {
 autoplay = "intro"
 
 [node name="CountdownLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Container" type="Control" parent="CountdownLayer"]
 modulate = Color(1, 1, 1, 0)
