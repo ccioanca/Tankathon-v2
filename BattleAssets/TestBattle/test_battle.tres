@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=6 format=3 uid="uid://dsh2l1q7exoxi"]
+
+[ext_resource type="Script" uid="uid://d4nywqktaoidk" path="res://Scripts/BattleInfo.cs" id="1_rb2cg"]
+[ext_resource type="Resource" uid="uid://be820bgb457eb" path="res://BattleAssets/TestBattle/test_team_TL.tres" id="2_ntuyh"]
+[ext_resource type="Resource" uid="uid://box8ke1m7g4ms" path="res://BattleAssets/TestBattle/test_team_BR.tres" id="3_4bul3"]
+[ext_resource type="Resource" uid="uid://dk16hv1psfh8p" path="res://BattleAssets/TestBattle/test_team_TR.tres" id="4_t1qxc"]
+[ext_resource type="Resource" uid="uid://di34icha6e3ep" path="res://BattleAssets/TestBattle/test_team_BL.tres" id="5_il1iu"]
+
+[resource]
+script = ExtResource("1_rb2cg")
+battleName = "Test Round"
+teams = Array[Object]([ExtResource("2_ntuyh"), ExtResource("4_t1qxc"), ExtResource("5_il1iu"), ExtResource("3_4bul3")])
+metadata/_custom_type_script = "uid://d4nywqktaoidk"

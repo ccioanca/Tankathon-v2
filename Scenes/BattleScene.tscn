@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
-[ext_resource type="Resource" uid="uid://dsh2l1q7exoxi" path="res://TeamAssets/test_battle.tres" id="2_u810s"]
+[ext_resource type="Resource" uid="uid://dsh2l1q7exoxi" path="res://BattleAssets/TestBattle/test_battle.tres" id="2_u810s"]
 [ext_resource type="PackedScene" uid="uid://b8bl3fg1j15cw" path="res://Scenes/Obstacle.tscn" id="4_2tp6q"]
 [ext_resource type="Script" uid="uid://cldikdy7y7gym" path="res://API/Scoreboard.cs" id="5_kwfy1"]
 [ext_resource type="StyleBox" uid="uid://ddubwu2xifgsa" path="res://Assets/ButtonStyle_Base.tres" id="6_ixjr5"]
@@ -15,7 +15,7 @@
 size = Vector2(1362.5, 81)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdgab"]
-size = Vector2(171, 800)
+size = Vector2(80, 800)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6js8"]
 content_margin_left = 10.0
@@ -78,9 +78,9 @@ texture = SubResource("GradientTexture1D_ixjr5")
 
 [sub_resource type="LabelSettings" id="LabelSettings_kwfy1"]
 font_size = 72
-font_color = Color(0.694118, 0.764706, 0.698039, 1)
+font_color = Color(0.805178, 0.855859, 0.80776, 1)
 outline_size = 35
-outline_color = Color(0.270588, 0.329412, 0.27451, 1)
+outline_color = Color(0.221016, 0.271757, 0.224419, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ixjr5"]
 font_size = 62
@@ -463,11 +463,9 @@ position = Vector2(1280, 0)
 
 [node name="Rectangle1" parent="Obstacles/Node2D5" index="0"]
 custom_minimum_size = Vector2(0, 800)
-offset_right = 192.0
-offset_bottom = 760.0
 
 [node name="CollisionShape2D" parent="Obstacles/Node2D5" index="1"]
-position = Vector2(45.5, 360)
+position = Vector2(0, 360)
 shape = SubResource("RectangleShape2D_sdgab")
 
 [node name="Node2D3" parent="Obstacles" instance=ExtResource("4_2tp6q")]
@@ -476,8 +474,7 @@ position = Vector2(640, 385)
 [node name="ScoreboardContainer" type="PanelContainer" parent="."]
 top_level = true
 z_index = 100
-offset_left = 1241.0
-offset_right = 1412.0
+offset_right = 171.0
 offset_bottom = 144.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x6js8")
 
@@ -528,6 +525,7 @@ position = Vector2(1130, 150)
 rotation = -2.35619
 
 [node name="IntroLayer" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("7_8uoga")
 
 [node name="BattlePanel" type="Panel" parent="IntroLayer"]
@@ -608,6 +606,7 @@ layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer/TLContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture = SubResource("PlaceholderTexture2D_kwfy1")
 expand_mode = 3
@@ -638,9 +637,11 @@ layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/TRContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture = SubResource("PlaceholderTexture2D_ixjr5")
 expand_mode = 3
+stretch_mode = 4
 
 [node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/TRContainer"]
 layout_mode = 2
@@ -668,6 +669,7 @@ layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer/BLContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture = SubResource("PlaceholderTexture2D_ixjr5")
 expand_mode = 3
@@ -698,6 +700,7 @@ layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer/BRContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 texture = SubResource("PlaceholderTexture2D_ixjr5")
 expand_mode = 3
@@ -711,7 +714,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IntroPanel" type="Panel" parent="IntroLayer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -726,6 +728,7 @@ libraries = {
 autoplay = "intro"
 
 [node name="CountdownLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Container" type="Control" parent="CountdownLayer"]
 modulate = Color(1, 1, 1, 0)
