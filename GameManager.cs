@@ -15,9 +15,9 @@ namespace Tankathon.API.Internal;
 public partial class GameManager : Node2D
 {
 	//TODO: Actually name all these resources based on the team names
-	[ExportGroup("R1 Fight")]
+	[ExportGroup("Battle Info")]
 	[Export]
-	BattleInfo r1Battle;
+	BattleInfo battleInfo;
 
 	// [ExportGroup("R2 Fight")]
 	// [Export]
@@ -51,10 +51,10 @@ public partial class GameManager : Node2D
 		//Test Fight
 		_tankTypes = new List<TeamData>
 		{
-			r1Battle.Get("teams").As<Godot.Collections.Array>()[0].As<TeamData>(),
-			r1Battle.Get("teams").As<Godot.Collections.Array>()[1].As<TeamData>(),
-			r1Battle.Get("teams").As<Godot.Collections.Array>()[2].As<TeamData>(),
-			r1Battle.Get("teams").As<Godot.Collections.Array>()[3].As<TeamData>()
+			battleInfo.Get("teams").As<Godot.Collections.Array>()[0].As<TeamData>(),
+			battleInfo.Get("teams").As<Godot.Collections.Array>()[1].As<TeamData>(),
+			battleInfo.Get("teams").As<Godot.Collections.Array>()[2].As<TeamData>(),
+			battleInfo.Get("teams").As<Godot.Collections.Array>()[3].As<TeamData>()
 		};
 
 		tlTank = GetNode<TheTank>("TopLeftTank");
