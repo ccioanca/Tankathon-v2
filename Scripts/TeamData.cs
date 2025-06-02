@@ -12,6 +12,8 @@ public partial class TeamData : Resource
     [Export]
     public Texture logo;
     [Export]
+    public string teamName;
+    [Export]
     public string tankType;
 
     public TeamData()

@@ -10,5 +10,6 @@ script = ExtResource("1_xn1fc")
 shootSound = ExtResource("4_2752q")
 deathSound = ExtResource("1_26jth")
 logo = ExtResource("2_8vqr6")
+teamName = "Dum Tank"
 tankType = "Tankathon.EvilTank.DumTank"
 metadata/_custom_type_script = "uid://tppmlshjytpd"
