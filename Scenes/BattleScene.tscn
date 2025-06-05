@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://oaqnkya2frwb"]
+[gd_scene load_steps=34 format=3 uid="uid://oaqnkya2frwb"]
 
 [ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8bl3fg1j15cw" path="res://Scenes/Obstacle.tscn" id="4_2tp6q"]
 [ext_resource type="Script" uid="uid://cldikdy7y7gym" path="res://API/Scoreboard.cs" id="5_kwfy1"]
 [ext_resource type="StyleBox" uid="uid://ddubwu2xifgsa" path="res://Assets/ButtonStyle_Base.tres" id="6_ixjr5"]
-[ext_resource type="Script" path="res://Scripts/intro_layer.gd" id="7_8uoga"]
+[ext_resource type="Script" uid="uid://ch4kb6ckoy5o7" path="res://Scripts/intro_layer.gd" id="7_8uoga"]
 [ext_resource type="FontFile" uid="uid://d0nva4s6trjsg" path="res://Other/Broken.otf" id="8_kwfy1"]
 [ext_resource type="Theme" uid="uid://ddmf2a442qko" path="res://Other/intro_screen_theme.tres" id="9_2tp6q"]
 [ext_resource type="FontFile" uid="uid://ctonyk3pm50er" path="res://Other/Revamped.otf" id="11_ixjr5"]
@@ -77,13 +77,14 @@ gradient = SubResource("Gradient_kwfy1")
 texture = SubResource("GradientTexture1D_ixjr5")
 
 [sub_resource type="LabelSettings" id="LabelSettings_kwfy1"]
-font_size = 72
+font_size = 172
 font_color = Color(0.805178, 0.855859, 0.80776, 1)
 outline_size = 35
 outline_color = Color(0.221016, 0.271757, 0.224419, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ixjr5"]
 font_size = 62
+font_color = Color(1.5, 1, 1, 1)
 outline_size = 35
 outline_color = Color(0, 0, 0, 1)
 
@@ -209,6 +210,50 @@ tracks/9/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BattlePanel/TextureRect:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-136, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BattlePanel/TextureRect4:position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-612, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BattlePanel/TextureRect3:position:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(390, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BattlePanel/TextureRect2:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(663, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_kwfy1"]
 resource_name = "intro"
@@ -244,7 +289,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(5.72485, 0, 0, 0.0694284, -12.3373, -6.61243, -0.0639049, -49.3491, 0, 0),
-"times": PackedFloat32Array(1.03333, 1.13333)
+"times": PackedFloat32Array(1.03333, 1.23333)
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -303,6 +348,60 @@ _data = {
 &"RESET": SubResource("Animation_ixjr5"),
 &"intro": SubResource("Animation_kwfy1"),
 &"intro_enter": SubResource("Animation_x5p3t")
+}
+
+[sub_resource type="Animation" id="Animation_cja1x"]
+resource_name = "BG"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BattlePanel/TextureRect:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0),
+"points": PackedFloat32Array(-136, -0.25, 0, 1.93333, 1.71806, -159.099, -2.04167, 1.909, 2.04167, -1.909, -136, -1.76667, 1.71806, 0.25, 0),
+"times": PackedFloat32Array(0, 5.03333, 10.0333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BattlePanel/TextureRect4:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0),
+"points": PackedFloat32Array(-612, -0.25, 0, 1.16667, 7.89093, -589.762, -1.1044, 0, 1.1044, 0, -612, -1.23333, 3.10852, 0.25, 0),
+"times": PackedFloat32Array(0, 3.9, 10)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BattlePanel/TextureRect3:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 3, 3, 0),
+"points": PackedFloat32Array(355.366, -0.25, 0, 0.25, 0, 390, -1.45833, 0.456207, 1.45833, -0.456207, 336, -1.31614, 0.456207, 1.31614, -0.456207, 355.366, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.53333, 8.00781, 10)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BattlePanel/TextureRect2:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0),
+"points": PackedFloat32Array(700, -0.25, 0, 2.26667, -0.691528, 663, -2.20342, 1.01355, 2.20342, -1.01355, 700, -1.26667, -0.312622, 0.25, 0),
+"times": PackedFloat32Array(0, 6.01324, 10)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aip7a"]
+_data = {
+&"BG": SubResource("Animation_cja1x")
 }
 
 [sub_resource type="Animation" id="Animation_0avxp"]
@@ -424,6 +523,14 @@ _data = {
 &"countdown": SubResource("Animation_1yevk")
 }
 
+[sub_resource type="Environment" id="Environment_kwfy1"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_intensity = 0.71
+glow_blend_mode = 0
+glow_hdr_threshold = 0.71
+
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_u810s")
 battleInfo = ExtResource("2_u810s")
@@ -536,23 +643,109 @@ grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_1yevk")
 
-[node name="Label" type="Label" parent="IntroLayer/BattlePanel"]
+[node name="TextureRect" type="ColorRect" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -457.127
+offset_top = -496.0
+offset_right = 262.873
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.237188
+color = Color(0, 0, 0, 0.5)
+
+[node name="TextureRect2" type="ColorRect" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = 303.0
+offset_right = 518.0
+offset_bottom = 803.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.0678253
+color = Color(0, 0, 0, 0.5)
+
+[node name="TextureRect3" type="ColorRect" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -337.0
+offset_top = 30.0
+offset_right = 383.0
+offset_bottom = 530.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.208645
+color = Color(0.259294, 0.259294, 0.259294, 0.5)
+
+[node name="TextureRect4" type="ColorRect" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 322.0
+offset_top = -972.0
+offset_right = 1042.0
+offset_bottom = -472.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.374323
+color = Color(0.288518, 0.288518, 0.288518, 0.5)
+
+[node name="VS Container" type="Control" parent="IntroLayer/BattlePanel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="V" type="Label" parent="IntroLayer/BattlePanel/VS Container"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = 525.0
+offset_top = 247.0
+offset_right = 649.0
+offset_bottom = 415.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 50
 theme_override_constants/shadow_outline_size = 35
 theme_override_fonts/font = ExtResource("8_kwfy1")
-text = "VS"
+text = "V"
+label_settings = SubResource("LabelSettings_kwfy1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S" type="Label" parent="IntroLayer/BattlePanel/VS Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 599.0
+offset_top = 303.0
+offset_right = 703.0
+offset_bottom = 471.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 50
+theme_override_constants/shadow_outline_size = 35
+theme_override_fonts/font = ExtResource("8_kwfy1")
+text = "S"
 label_settings = SubResource("LabelSettings_kwfy1")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -570,7 +763,7 @@ offset_bottom = 104.0
 grow_horizontal = 2
 theme_override_constants/outline_size = 50
 theme_override_constants/shadow_outline_size = 35
-theme_override_fonts/font = ExtResource("8_kwfy1")
+theme_override_fonts/font = ExtResource("11_ixjr5")
 text = "Battle Name"
 label_settings = SubResource("LabelSettings_ixjr5")
 horizontal_alignment = 1
@@ -604,6 +797,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer/TLContainer"]
+modulate = Color(1.2, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -612,6 +806,7 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer/TLContainer"]
+modulate = Color(1.5, 1.5, 1.5, 1)
 layout_mode = 2
 theme = ExtResource("9_2tp6q")
 text = "TEAM NAME"
@@ -635,6 +830,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/TRContainer"]
+modulate = Color(1.2, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -643,6 +839,7 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/TRContainer"]
+modulate = Color(1.5, 1.5, 1.5, 1)
 layout_mode = 2
 theme = ExtResource("9_2tp6q")
 text = "TEAM NAME"
@@ -667,6 +864,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer/BLContainer"]
+modulate = Color(1.2, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -675,6 +873,7 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer/BLContainer"]
+modulate = Color(1.5, 1.5, 1.5, 1)
 layout_mode = 2
 theme = ExtResource("9_2tp6q")
 text = "TEAM NAME"
@@ -698,6 +897,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer/BRContainer"]
+modulate = Color(1.2, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -706,6 +906,7 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer/BRContainer"]
+modulate = Color(1.5, 1.5, 1.5, 1)
 layout_mode = 2
 theme = ExtResource("9_2tp6q")
 text = "TEAM NAME"
@@ -713,6 +914,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IntroPanel" type="Panel" parent="IntroLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -720,11 +922,20 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2tp6q")
 
+[node name="CanvasModulate" type="CanvasModulate" parent="IntroLayer"]
+color = Color(0.942823, 0.942823, 0.942823, 1)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IntroLayer"]
 libraries = {
 &"": SubResource("AnimationLibrary_1yevk")
 }
 autoplay = "intro"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="IntroLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_aip7a")
+}
+autoplay = "BG"
 
 [node name="CountdownLayer" type="CanvasLayer" parent="."]
 
@@ -764,6 +975,9 @@ vertical_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_x5p3t")
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kwfy1")
 
 [connection signal="pressed" from="ScoreboardContainer/Scoreboard/Button" to="ScoreboardContainer/Scoreboard" method="RestartPressed"]
 
