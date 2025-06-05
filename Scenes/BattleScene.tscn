@@ -1030,6 +1030,7 @@ libraries = {
 }
 
 [node name="Countdown" type="AudioStreamPlayer" parent="CountdownLayer"]
+bus = &"Countdown"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kwfy1")
