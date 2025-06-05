@@ -43,10 +43,15 @@ public partial class GameManager : Node2D
 	[Export]
 	public bool GAMESTART = false;
 
+	AudioStreamPlayer musicPlayer;
+
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		musicPlayer = GetNode<AudioStreamPlayer>("%MusicPlayer");
+
 		//initialize the fights here
 		//Test Fight
 		_tankTypes = new List<TeamData>
@@ -76,6 +81,12 @@ public partial class GameManager : Node2D
 			trTank.Init(_tankTypes[2]);
 		if (blTank != null)
 			blTank.Init(_tankTypes[3]);
+	}
+
+	public void StartGame()
+	{
+		GAMESTART = true;
+		musicPlayer.Play();
 	}
 	
 }
