@@ -32,12 +32,14 @@ public partial class Bullet : Area2D, IEntity
 			if (body is TheTank)
 			{
 				(body as TheTank).Hurt();
+				initializer.Score();
 			}
 			particles.Reparent(GetParent());
 			particles.Emitting = false;
 			Explode();
-			
-			QueueFree();
+
+            initializer.PopBullet(this);
+            QueueFree();
 		}
     }
 
