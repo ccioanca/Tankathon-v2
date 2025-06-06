@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dojx2g71ojb0q"]
+[gd_scene load_steps=20 format=3 uid="uid://dojx2g71ojb0q"]
 
 [ext_resource type="Script" uid="uid://cbbda3vot0svr" path="res://API/TheTank.cs" id="1_rftbn"]
 [ext_resource type="Shader" uid="uid://bp52plcab8fj6" path="res://Shaders/Tank.gdshader" id="2_btl5t"]
@@ -44,6 +44,51 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_y3kf3"]
 colors = PackedColorArray(0.380392, 0.164706, 0.133333, 0, 0.368627, 0.145098, 0.0705882, 0.717647)
 
+[sub_resource type="Gradient" id="Gradient_44y1t"]
+offsets = PackedFloat32Array(0, 0.538462)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t6lt3"]
+gradient = SubResource("Gradient_44y1t")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_1cwpn"]
+resource_name = "light"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.6)
+}
+
+[sub_resource type="Animation" id="Animation_3w70t"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y3kf3"]
+_data = {
+&"RESET": SubResource("Animation_3w70t"),
+&"light": SubResource("Animation_1cwpn")
+}
+
 [node name="BlueTank" type="CharacterBody2D"]
 script = ExtResource("1_rftbn")
 
@@ -56,6 +101,7 @@ texture = ExtResource("3_btl5t")
 script = ExtResource("3_sgv2t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_f3huc")
 
@@ -129,5 +175,27 @@ z_index = -10
 width_curve = SubResource("Curve_3w70t")
 gradient = SubResource("Gradient_y3kf3")
 script = ExtResource("7_44y1t")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(18, -2)
+scale = Vector2(0.440209, 0.440209)
+color = Color(1, 0, 0, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_t6lt3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -19.0
+offset_top = -37.0
+offset_right = 21.0
+offset_bottom = 3.0
+scale = Vector2(1.90511, 1.81692)
+color = Color(0.742015, 0.375452, 0.227324, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y3kf3")
+}
+autoplay = "light"
 
 [connection signal="resized" from="NameLabel" to="." method="OnLabelResized"]
