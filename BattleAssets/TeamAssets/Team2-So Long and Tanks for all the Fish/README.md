@@ -1,4 +1,4 @@
-## Team 15
+## Team 2
 
 ## Checks
 - Godot references in code

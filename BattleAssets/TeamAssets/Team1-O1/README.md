@@ -1,4 +1,9 @@
-## Team 15
+## Team 1
+Talha Ansari
+Bin Xu
+Michael Arra
+Olakunmi Adelagun
+Debbie Alcatrao
 
 ## Checks
 - Godot references in code
