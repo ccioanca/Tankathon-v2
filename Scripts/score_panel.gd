@@ -31,6 +31,12 @@ func _ready():
 func change_health(health):
 	tank_health = health
 	tank_health_panel.text = "%s/10" % tank_health
+	if tank_health == 0:
+		# gray out panel
+		get_node("HBox/TankName").set("modulate", Color("#fff", 0.3))
+		get_node("HBox/TankHealth").set("modulate", Color("#fff", 0.3))
+		get_node("HBox/CenterContainer/TankPoints").set("modulate", Color("#fff", 0.3))
+		pass
 	
 func change_points(points):
 	tank_points = points

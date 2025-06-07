@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://b5j64l3y0djj5"]
+
+[ext_resource type="Script" uid="uid://d4nywqktaoidk" path="res://Scripts/BattleInfo.cs" id="1_7jfq7"]
+
+[resource]
+script = ExtResource("1_7jfq7")
+battleName = "Round 1"
+teams = Array[Object]([null, null, null, null])
+metadata/_custom_type_script = "uid://d4nywqktaoidk"

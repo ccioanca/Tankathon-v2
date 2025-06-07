@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dojx2g71ojb0q"]
+[gd_scene load_steps=19 format=3 uid="uid://dojx2g71ojb0q"]
 
 [ext_resource type="Script" uid="uid://cbbda3vot0svr" path="res://API/TheTank.cs" id="1_rftbn"]
 [ext_resource type="Shader" uid="uid://bp52plcab8fj6" path="res://Shaders/Tank.gdshader" id="2_btl5t"]
@@ -7,8 +7,9 @@
 [ext_resource type="Theme" uid="uid://bi2xlu10nuh8x" path="res://Assets/Progress_Base.tres" id="4_1r4k5"]
 [ext_resource type="PackedScene" uid="uid://ct3r80a6a4li0" path="res://Scenes/Tank/TreadParticles.tscn" id="6_40be6"]
 [ext_resource type="Script" uid="uid://c70sue1xgtecs" path="res://Scripts/track.gd" id="7_44y1t"]
+[ext_resource type="Texture2D" uid="uid://bw0vvf3o4td1o" path="res://Assets/Other/tread_texture.jpg" id="7_t6lt3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_40be6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44y1t"]
 shader = ExtResource("2_btl5t")
 shader_parameter/_oldcolor1 = Color(0, 1, 0, 1)
 shader_parameter/_oldcolor2 = Color(0, 0, 1, 1)
@@ -35,14 +36,7 @@ _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_1cwpn"]
-colors = PackedColorArray(0.380392, 0.164706, 0.133333, 0, 0.368627, 0.145098, 0.0705882, 0.717647)
-
-[sub_resource type="Curve" id="Curve_3w70t"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_y3kf3"]
-colors = PackedColorArray(0.380392, 0.164706, 0.133333, 0, 0.368627, 0.145098, 0.0705882, 0.717647)
+colors = PackedColorArray(0.380392, 0.164706, 0.133333, 0, 0.37, 0.261775, 0.2257, 0.4)
 
 [sub_resource type="Gradient" id="Gradient_44y1t"]
 offsets = PackedFloat32Array(0, 0.538462)
@@ -53,6 +47,20 @@ gradient = SubResource("Gradient_44y1t")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_3w70t"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_1cwpn"]
 resource_name = "light"
@@ -69,20 +77,6 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.6)
 }
 
-[sub_resource type="Animation" id="Animation_3w70t"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3kf3"]
 _data = {
 &"RESET": SubResource("Animation_3w70t"),
@@ -93,7 +87,7 @@ _data = {
 script = ExtResource("1_rftbn")
 
 [node name="TankSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_40be6")
+material = SubResource("ShaderMaterial_44y1t")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_btl5t")
 
@@ -165,6 +159,12 @@ position = Vector2(-19, 37)
 z_index = -10
 width_curve = SubResource("Curve_t6lt3")
 gradient = SubResource("Gradient_1cwpn")
+texture = ExtResource("7_t6lt3")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 script = ExtResource("7_44y1t")
 
 [node name="Marker2D2" type="Marker2D" parent="Tracks"]
@@ -172,8 +172,14 @@ position = Vector2(21, 37)
 
 [node name="Line2D" type="Line2D" parent="Tracks/Marker2D2"]
 z_index = -10
-width_curve = SubResource("Curve_3w70t")
-gradient = SubResource("Gradient_y3kf3")
+width_curve = SubResource("Curve_t6lt3")
+gradient = SubResource("Gradient_1cwpn")
+texture = ExtResource("7_t6lt3")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 script = ExtResource("7_44y1t")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

@@ -134,6 +134,8 @@ public partial class TheTank : CharacterBody2D, IEntity
 		deathPlayer.Stream = deathSound;
 
 		//setup team colors
+		//Need to duplicate the material or else sometimes it is treated as shared
+		GetNode<Sprite2D>("TankSprite").Material = ((ShaderMaterial)GetNode<Sprite2D>("TankSprite").Material).Duplicate() as ShaderMaterial;
 		((ShaderMaterial)GetNode<Sprite2D>("TankSprite").Material).SetShaderParameter("_newcolor1", Color.FromHtml(_tankSetup.primaryColor));
         ((ShaderMaterial)GetNode<Sprite2D>("TankSprite").Material).SetShaderParameter("_newcolor2", Color.FromHtml(_tankSetup.secondaryColor));	
     }
@@ -250,8 +252,10 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 		if (health <= 0)
 		{
-			deathPlayer.Play();
-			this.QueueFree();
+			deathPlayer.Reparent(GetTree().Root);
+            deathPlayer.Play();
+
+            this.QueueFree();
 		}
     }
 

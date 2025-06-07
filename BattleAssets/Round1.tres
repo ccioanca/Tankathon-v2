@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://48ue1r6wcln3"]
+
+[ext_resource type="Script" uid="uid://d4nywqktaoidk" path="res://Scripts/BattleInfo.cs" id="1_ejal3"]
+
+[resource]
+script = ExtResource("1_ejal3")
+battleName = "Sudden Death"
+teams = Array[Object]([null, null, null, null])
+metadata/_custom_type_script = "uid://d4nywqktaoidk"

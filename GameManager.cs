@@ -88,5 +88,14 @@ public partial class GameManager : Node2D
 		GAMESTART = true;
 		musicPlayer.Play();
 	}
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+		if (@event is InputEventKey eventKey)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Ctrl) //TODO: maybe use a different key? 
+				Engine.TimeScale = 3f;
+
+        base._UnhandledInput(@event);
+    }
 	
 }
