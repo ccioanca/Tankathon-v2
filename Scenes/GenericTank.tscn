@@ -77,6 +77,7 @@ _data = {
 }
 
 [node name="BlueTank" type="CharacterBody2D"]
+z_index = 11
 script = ExtResource("1_rftbn")
 
 [node name="TankSprite" type="Sprite2D" parent="."]
