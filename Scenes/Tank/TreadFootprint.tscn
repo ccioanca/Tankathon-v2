@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3i72ol6h2unu"]
+
+[ext_resource type="Texture2D" uid="uid://drhjntdwk1jr8" path="res://Assets/Tank/Treads.png" id="1_k6ciy"]
+
+[node name="TreadFootprint" type="Node2D"]
+
+[node name="LineSegment" type="Sprite2D" parent="."]
+texture = ExtResource("1_k6ciy")
+offset = Vector2(16, 0)
