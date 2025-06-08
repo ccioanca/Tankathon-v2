@@ -6,9 +6,9 @@ extends Marker2D
 # The node whose path we are drawing (the player, the mouse, etc.).
 #@export var target_node: Node2D #its "self"
 # The length of one texture segment. Should match your texture's width.
-@export var segment_length: float = 32.0
+@export var segment_length: float = 24.0
 # The maximum number of segments to keep on screen.
-@export var max_segments: int = 5
+@export var max_segments: int = 100
 
 # --- Private Variables ---
 # A queue to keep track of the segments in order.
