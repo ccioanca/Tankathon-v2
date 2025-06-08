@@ -846,7 +846,6 @@ position = Vector2(1130, 150)
 rotation = -2.35619
 
 [node name="IntroLayer" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("7_8uoga")
 
 [node name="BattlePanel" type="Panel" parent="IntroLayer"]
@@ -1184,7 +1183,6 @@ stream = ExtResource("13_0avxp")
 script = ExtResource("11_x5p3t")
 
 [node name="CountdownLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Container" type="Control" parent="CountdownLayer"]
 modulate = Color(1, 1, 1, 0)
