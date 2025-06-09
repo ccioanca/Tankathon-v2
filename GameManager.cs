@@ -1,35 +1,16 @@
 using Godot;
-using Godot.Collections;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using Tankathon.API;
-using Tankathon.EvilTank;
 using Tankathon.Scripts;
 
 namespace Tankathon.API.Internal;
 
 public partial class GameManager : Node2D
 {
-	//TODO: Actually name all these resources based on the team names
 	[ExportGroup("Battle Info")]
 	[Export]
 	BattleInfo battleInfo;
 
-	// [ExportGroup("R2 Fight")]
-	// [Export]
-	// Resource trTankRes;
-
-	// [ExportGroup("R3 Fight")]
-	// [Export]
-	// Resource blTankRes;
-
-	// [ExportGroup("R4 Fight")]
-	// [Export]
-	// Resource brTankRes;
 
 	TheTank tlTank = null;
 	TheTank trTank = null;
@@ -44,8 +25,6 @@ public partial class GameManager : Node2D
 	public bool GAMESTART = false;
 
 	AudioStreamPlayer musicPlayer;
-
-
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -95,6 +74,22 @@ public partial class GameManager : Node2D
 			blTank.Init(_tankTypes[3]);
 	}
 
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionPressed("Fullscreen"))
+        {
+			if (DisplayServer.WindowGetMode() != DisplayServer.WindowMode.Fullscreen)
+			{
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+			}
+			else
+			{
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+			}
+        }
+        base._Process(delta);
+    }
+
 	public void StartGame()
 	{
 		GAMESTART = true;
@@ -104,9 +99,9 @@ public partial class GameManager : Node2D
     public override void _UnhandledInput(InputEvent @event)
     {
 		if (@event is InputEventKey eventKey)
-			if (eventKey.Pressed && eventKey.Keycode == Key.Ctrl) //TODO: maybe use a different key? 
+			if (eventKey.Pressed && eventKey.Keycode == Key.Alt) //TODO: maybe use a different key? 
 				Engine.TimeScale = 3f;
-			else
+            else
 				Engine.TimeScale = 1f;
 
 			base._UnhandledInput(@event);
