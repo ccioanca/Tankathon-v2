@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://dojx2g71ojb0q"]
+[gd_scene load_steps=19 format=3 uid="uid://dojx2g71ojb0q"]
 
 [ext_resource type="Script" uid="uid://cbbda3vot0svr" path="res://API/TheTank.cs" id="1_rftbn"]
 [ext_resource type="Shader" uid="uid://bp52plcab8fj6" path="res://Shaders/Tank.gdshader" id="2_btl5t"]
 [ext_resource type="Texture2D" uid="uid://puf5hciiojkm" path="res://Assets/Tank/Tank.png" id="3_btl5t"]
 [ext_resource type="Script" uid="uid://cewlmkf8acdda" path="res://API/Actions.cs" id="3_sgv2t"]
 [ext_resource type="Theme" uid="uid://bi2xlu10nuh8x" path="res://Assets/Progress_Base.tres" id="4_1r4k5"]
+[ext_resource type="Texture2D" uid="uid://dtf43g861n37g" path="res://Assets/Tank/Tank_shadow.png" id="4_3w70t"]
+[ext_resource type="Texture2D" uid="uid://dphovgb51yvbd" path="res://Assets/Tank/Tank_highlights.png" id="5_y3kf3"]
 [ext_resource type="PackedScene" uid="uid://ct3r80a6a4li0" path="res://Scenes/Tank/TreadParticles.tscn" id="6_40be6"]
 [ext_resource type="Script" uid="uid://b1wp33hu88o1q" path="res://Scripts/tread_footprint.gd" id="7_t6lt3"]
 [ext_resource type="PackedScene" uid="uid://b3i72ol6h2unu" path="res://Scenes/Tank/TreadFootprint.tscn" id="8_1cwpn"]
@@ -84,6 +86,16 @@ script = ExtResource("1_rftbn")
 material = SubResource("ShaderMaterial_44y1t")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_btl5t")
+
+[node name="TankShadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.666667)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_3w70t")
+
+[node name="TankHighlights" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_y3kf3")
 
 [node name="Actions" type="Node2D" parent="."]
 script = ExtResource("3_sgv2t")

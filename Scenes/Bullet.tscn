@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://is24103xhc2r" path="res://API/Bullet.cs" id="1_esi4i"]
 [ext_resource type="Texture2D" uid="uid://xf8jv5f6xgri" path="res://Assets/Bullet.png" id="1_u3fi7"]
-[ext_resource type="Texture2D" uid="uid://b58xni6st0urc" path="res://Assets/Bullet/Bullet Fire.png" id="3_cvob7"]
+[ext_resource type="Texture2D" uid="uid://dsqhxfalqhowf" path="res://Assets/Bullet/Bullet Fire.png" id="3_cvob7"]
 [ext_resource type="Texture2D" uid="uid://b1kbqkbh20amj" path="res://Assets/Bullet/Bullet.png" id="4_7k4wi"]
 [ext_resource type="Texture2D" uid="uid://c30lt0ost2bw8" path="res://Assets/Bullet/Bullet Smoke.png" id="5_a2eq7"]
 [ext_resource type="Script" uid="uid://cccr83lablf7k" path="res://Scripts/trail.gd" id="6_34s0o"]
@@ -17,19 +17,19 @@ use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cgt83"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvob7"]
 atlas = ExtResource("3_cvob7")
 region = Rect2(0, 0, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8c870"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k4wi"]
 atlas = ExtResource("3_cvob7")
 region = Rect2(80, 0, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_th1qm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2eq7"]
 atlas = ExtResource("3_cvob7")
 region = Rect2(160, 0, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s8w76"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_34s0o"]
 atlas = ExtResource("3_cvob7")
 region = Rect2(240, 0, 80, 80)
 
@@ -37,16 +37,16 @@ region = Rect2(240, 0, 80, 80)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cgt83")
+"texture": SubResource("AtlasTexture_cvob7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8c870")
+"texture": SubResource("AtlasTexture_7k4wi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_th1qm")
+"texture": SubResource("AtlasTexture_a2eq7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s8w76")
+"texture": SubResource("AtlasTexture_34s0o")
 }],
 "loop": true,
 "name": &"default",
@@ -219,7 +219,8 @@ position = Vector2(1, 29)
 scale = Vector2(0.3125, 0.3125)
 sprite_frames = SubResource("SpriteFrames_82m76")
 autoplay = "default"
-frame_progress = 0.232912
+frame = 2
+frame_progress = 0.444829
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsqhxfalqhowf"
-path="res://.godot/imported/Bullet Fire.png-ed403684dee685d7620f3d3a3e8d35c0.ctex"
+uid="uid://dtf43g861n37g"
+path="res://.godot/imported/Tank_shadow.png-51558c30f0f5c1b7c3e902672940d689.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bullet/Bullet Fire.png"
-dest_files=["res://.godot/imported/Bullet Fire.png-ed403684dee685d7620f3d3a3e8d35c0.ctex"]
+source_file="res://Assets/Tank/Tank_shadow.png"
+dest_files=["res://.godot/imported/Tank_shadow.png-51558c30f0f5c1b7c3e902672940d689.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://oaqnkya2frwb"]
+[gd_scene load_steps=50 format=4 uid="uid://oaqnkya2frwb"]
 
 [ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://b7lgdwoywxenn" path="res://Scripts/intro_player.gd" id="11_x5p3t"]
 [ext_resource type="AudioStream" uid="uid://c4sbqdxw1i6is" path="res://Audio/countdown1.wav" id="12_1yevk"]
 [ext_resource type="Texture2D" uid="uid://7g1321n05mbx" path="res://Assets/Terrain/08.png" id="12_nd4jk"]
+[ext_resource type="Texture2D" uid="uid://c8rhqeechf0sb" path="res://Assets/Terrain/GoldMine_Destroyed.png" id="12_qvetm"]
 [ext_resource type="AudioStream" uid="uid://cotct8in7eqp1" path="res://Audio/MenuMusic.ogg" id="13_0avxp"]
 [ext_resource type="AudioStream" uid="uid://bxi8ar1v2o4r8" path="res://Audio/BattleMusic.ogg" id="14_x5p3t"]
 
@@ -650,14 +651,6 @@ texture = ExtResource("9_eqbi2")
 position = Vector2(734, 99)
 texture = ExtResource("10_xy0dg")
 
-[node name="04" type="Sprite2D" parent="Deco"]
-position = Vector2(671, 356)
-texture = ExtResource("11_oskno")
-
-[node name="08" type="Sprite2D" parent="Deco"]
-position = Vector2(611, 358)
-texture = ExtResource("10_xy0dg")
-
 [node name="13" type="Sprite2D" parent="Deco"]
 position = Vector2(60, 213)
 texture = ExtResource("11_oskno")
@@ -734,13 +727,10 @@ texture = ExtResource("6_2trbe")
 position = Vector2(962, 218)
 texture = ExtResource("7_fkk8v")
 
-[node name="32" type="Sprite2D" parent="Deco"]
-position = Vector2(643, 362)
-texture = ExtResource("9_eqbi2")
-
-[node name="33" type="Sprite2D" parent="Deco"]
-position = Vector2(614, 384)
-texture = ExtResource("10_xy0dg")
+[node name="GoldMineDestroyed" type="Sprite2D" parent="Deco"]
+position = Vector2(639.5, 385)
+scale = Vector2(0.526042, 0.921875)
+texture = ExtResource("12_qvetm")
 
 [node name="Obstacles" type="Node" parent="."]
 
@@ -1231,10 +1221,6 @@ environment = SubResource("Environment_kwfy1")
 unique_name_in_owner = true
 stream = ExtResource("14_x5p3t")
 bus = &"Music"
-
-[node name="06" type="Sprite2D" parent="."]
-position = Vector2(615, 405)
-texture = ExtResource("9_eqbi2")
 
 [connection signal="pressed" from="ScoreboardContainer/Scoreboard/Button" to="ScoreboardContainer/Scoreboard" method="RestartPressed"]
 
