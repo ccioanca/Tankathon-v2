@@ -26,6 +26,7 @@ namespace Tankathon.API
 
 			//Add the 5 Minute Round Timer
 			AddChild(_timer);
+			_timer.OneShot = true;
 			_timer.Timeout += () => Timeout();
 			_timeLeft = GetNode<Label>("TimeLeft");
 		}
@@ -51,9 +52,9 @@ namespace Tankathon.API
 			GetTree().ReloadCurrentScene();
 		}
 
-		public void StartTimer()
+		public void StartTimer(double time = (3*60))
 		{
-			_timer.Start(3 * 60); //start the 3 minute timer
+			_timer.Start(time); //start the timer
 		}
         
     }

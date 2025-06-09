@@ -94,6 +94,7 @@ public partial class GameManager : Node2D
 	{
 		GAMESTART = true;
 		musicPlayer.Play();
+		GetNode<Scoreboard>("%Scoreboard").StartTimer((double)battleInfo.battleTime);
 	}
 
     public override void _UnhandledInput(InputEvent @event)

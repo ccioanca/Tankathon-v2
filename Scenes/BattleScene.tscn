@@ -1,8 +1,8 @@
 [gd_scene load_steps=51 format=4 uid="uid://oaqnkya2frwb"]
 
 [ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
+[ext_resource type="Resource" uid="uid://bf3hm278g2vfd" path="res://BattleAssets/SuddenDeath.tres" id="2_2trbe"]
 [ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
-[ext_resource type="Resource" uid="uid://dsh2l1q7exoxi" path="res://BattleAssets/TestBattle/test_battle.tres" id="2_aip7a"]
 [ext_resource type="TileSet" uid="uid://db08e7muwuxi5" path="res://Assets/tileset.tres" id="3_i7srl"]
 [ext_resource type="PackedScene" uid="uid://b8bl3fg1j15cw" path="res://Scenes/Obstacle.tscn" id="4_2tp6q"]
 [ext_resource type="Script" uid="uid://cldikdy7y7gym" path="res://API/Scoreboard.cs" id="5_kwfy1"]
@@ -524,27 +524,13 @@ tracks/2/keys = {
 "update": 1,
 "values": ["3", "2", "1", "GO!"]
 }
-tracks/3/type = "method"
+tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../ScoreboardContainer/Scoreboard")
+tracks/3/path = NodePath("Countdown")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"StartTimer"
-}]
-}
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Countdown")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -564,14 +550,14 @@ tracks/4/keys = {
 }],
 "times": PackedFloat32Array(0.2, 1.23333, 2.26667, 3.26667)
 }
-tracks/4/use_blend = true
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("..")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/3/use_blend = true
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(4),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -596,7 +582,7 @@ glow_hdr_threshold = 0.9
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_u810s")
-battleInfo = ExtResource("2_aip7a")
+battleInfo = ExtResource("2_2trbe")
 
 [node name="G1" type="TileMapLayer" parent="."]
 self_modulate = Color(0.6808, 0.74, 0.72224, 1)
@@ -842,7 +828,6 @@ position = Vector2(1130, 150)
 rotation = -2.35619
 
 [node name="IntroLayer" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("7_8uoga")
 
 [node name="BattlePanel" type="Panel" parent="IntroLayer"]

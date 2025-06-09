@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_urxrs")
-battleName = "Round 1"
+battleName = "Round 4"
+battleTime = 180
 teams = Array[Object]([null, null, null, null])
 metadata/_custom_type_script = "uid://d4nywqktaoidk"

@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_ilt6k")
-battleName = "Round 1"
-teams = Array[Object]([null, null, null, null])
+battleName = "Sudden Death"
+battleTime = 60
+teams = Array[Object]([null, null])
 metadata/_custom_type_script = "uid://d4nywqktaoidk"
