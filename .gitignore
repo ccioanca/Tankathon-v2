@@ -10,7 +10,7 @@
 *.userosscache
 *.sln.docstates
 
-BattleAssets/TeamAssets/*
+BattleAssets/TeamAssets/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
