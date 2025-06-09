@@ -1,16 +1,12 @@
 extends Marker2D
 
-# --- Inspector Variables ---
-# The scene for a single piece of the line (the one we just made).
+# The scene for a single piece of the track marks.
 @export var segment_scene: PackedScene
-# The node whose path we are drawing (the player, the mouse, etc.).
-#@export var target_node: Node2D #its "self"
-# The length of one texture segment. Should match your texture's width.
+# The length of one texture segment. (match the segment texture width - after any scaling)
 @export var segment_length: float = 24.0
 # The maximum number of segments to keep on screen.
 @export var max_segments: int = 100
 
-# --- Private Variables ---
 # A queue to keep track of the segments in order.
 var _segments: Array[Node2D] = []
 # The position where the last segment was laid down.
