@@ -1,4 +1,9 @@
 ## Team 5
+Neel Gajera
+Amal Das
+Alexander Doris
+Blessing Erhunmwunse
+Arthur Evans
 
 ## Checks
 - Godot references in code

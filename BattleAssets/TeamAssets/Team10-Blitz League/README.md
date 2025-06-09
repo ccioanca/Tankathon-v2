@@ -1,4 +1,9 @@
 ## Team 10
+Himanshu Panjabi
+Eric Nirta
+Dalton Northrup
+Viswanth Nune
+Omotola Oladele
 
 ## Checks
 - Godot references in code

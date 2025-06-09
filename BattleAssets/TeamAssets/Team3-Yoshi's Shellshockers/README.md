@@ -1,4 +1,10 @@
 ## Team 3
+Mausami Desai
+Preethi Billava Reena
+Anthony Bitonti
+Adam Carr
+Patrick Casey
+Connor Cummings
 
 ## Checks
 - Godot references in code

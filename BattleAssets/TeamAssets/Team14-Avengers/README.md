@@ -1,4 +1,8 @@
 ## Team 14
+Muhammad Raza
+Karim Sigere
+Rajat Singla
+Ursula Skrzypkowski
 
 ## Checks
 - Godot references in code
