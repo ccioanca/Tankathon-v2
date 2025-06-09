@@ -52,21 +52,33 @@ public partial class GameManager : Node2D
 	{
 		musicPlayer = GetNode<AudioStreamPlayer>("%MusicPlayer");
 
-		//initialize the fights here
-		//Test Fight
-		_tankTypes = new List<TeamData>
-		{
-			battleInfo.Get("teams").As<Godot.Collections.Array>()[0].As<TeamData>(),
-			battleInfo.Get("teams").As<Godot.Collections.Array>()[1].As<TeamData>(),
-			battleInfo.Get("teams").As<Godot.Collections.Array>()[2].As<TeamData>(),
-			battleInfo.Get("teams").As<Godot.Collections.Array>()[3].As<TeamData>()
-		};
+        _tankTypes = new List<TeamData>();
+        var teamsArray = battleInfo.Get("teams").As<Godot.Collections.Array>();
 
-		tlTank = GetNode<TheTank>("TopLeftTank");
+        for (int i = 0; i < teamsArray.Count && i < 4; i++)
+        {
+            var teamData = teamsArray[i].As<TeamData>();
+            if (teamData != null)
+            {
+                _tankTypes.Add(teamData);
+            }
+        }
+
+        tlTank = GetNode<TheTank>("TopLeftTank");
 		brTank = GetNode<TheTank>("BottomRightTank");
 		trTank = GetNodeOrNull<TheTank>("TopRightTank");
 		blTank = GetNodeOrNull<TheTank>("BottomLeftTank");
 
+		if (teamsArray.Count < 3)
+		{
+			trTank.QueueFree();
+			trTank = null;
+		}
+		if (teamsArray.Count < 4)
+		{
+			blTank.QueueFree();
+			blTank = null;
+		}
 
 		tlTank.thisTank = Activator.CreateInstance(Type.GetType(_tankTypes[0].tankType)) as ITank;
 		brTank.thisTank = Activator.CreateInstance(Type.GetType(_tankTypes[1].tankType)) as ITank;
