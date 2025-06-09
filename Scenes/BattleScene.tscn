@@ -785,8 +785,12 @@ visible = false
 [node name="ScoreboardContainer" type="PanelContainer" parent="."]
 top_level = true
 z_index = 100
-offset_right = 171.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -171.0
 offset_bottom = 144.0
+grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x6js8")
 
 [node name="Scoreboard" type="VBoxContainer" parent="ScoreboardContainer"]

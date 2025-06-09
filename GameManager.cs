@@ -94,8 +94,10 @@ public partial class GameManager : Node2D
 		if (@event is InputEventKey eventKey)
 			if (eventKey.Pressed && eventKey.Keycode == Key.Ctrl) //TODO: maybe use a different key? 
 				Engine.TimeScale = 3f;
+			else
+				Engine.TimeScale = 1f;
 
-        base._UnhandledInput(@event);
+			base._UnhandledInput(@event);
     }
 	
 }
