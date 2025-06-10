@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=6 format=3 uid="uid://48ue1r6wcln3"]
+
+[ext_resource type="Script" uid="uid://d4nywqktaoidk" path="res://Scripts/BattleInfo.cs" id="1_ejal3"]
+[ext_resource type="Resource" uid="uid://b2lt3ygkfylok" path="res://BattleAssets/TeamAssets/Team8-TanksALatte/TD-TanksALate.tres" id="2_lkwv0"]
+[ext_resource type="Resource" uid="uid://2ye52jovg55q" path="res://BattleAssets/TeamAssets/Team9-Technology & Immolation/TD-TechnologyAndImmolation.tres" id="3_j5nfi"]
+[ext_resource type="Resource" uid="uid://cbso61or5tk2w" path="res://BattleAssets/TeamAssets/Team4-Explodinator 5000/TD-Explodinator5000.tres" id="4_os63o"]
+[ext_resource type="Resource" uid="uid://wnojvksihq7v" path="res://BattleAssets/TeamAssets/Team13-Unlucky For You/TD-UnluckyForYou.tres" id="5_enis0"]
+
+[resource]
+script = ExtResource("1_ejal3")
+battleName = "Round 1"
+battleTime = 180
+teams = Array[Object]([ExtResource("2_lkwv0"), ExtResource("3_j5nfi"), ExtResource("4_os63o"), ExtResource("5_enis0")])
+metadata/_custom_type_script = "uid://d4nywqktaoidk"

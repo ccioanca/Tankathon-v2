@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Tankathon.Scripts;
 
 namespace Tankathon.API.Internal;
 
@@ -28,9 +29,13 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 	private Node scorePanel;
 
+	private AudioStream shootSound;
+	private AudioStream deathSound;
+
+
 
     //Shooty things
-    CollisionShape2D _collisionShape;
+	CollisionShape2D _collisionShape;
 	PackedScene bullet;
     Marker2D turret;
     private List<Bullet> bulletsFired = new List<Bullet>();
@@ -45,26 +50,42 @@ public partial class TheTank : CharacterBody2D, IEntity
 	private System.Collections.Generic.Dictionary<Side, Entity> hitResults = new System.Collections.Generic.Dictionary<Side, Entity>();
 
 
+	//SFX
+	AudioStreamPlayer shootPlayer = new AudioStreamPlayer();
+	AudioStreamPlayer deathPlayer = new AudioStreamPlayer();
+
+	//Treads
+	private CpuParticles2D treadsL;
+	private CpuParticles2D treadsR;
+
     public override void _Ready()
 	{
 		_passedActions = GetNode<Actions>("Actions");
 		_healthBar = GetNode<ProgressBar>("HealthBar");
-        _tankLabel = GetNode<Label>("NameLabel");
-        _scoreboard = GetNode<Scoreboard>("%Scoreboard");
-        _tankScoreContainer = GetNode<BoxContainer>("%TanksScoreContainer");
+		_tankLabel = GetNode<Label>("NameLabel");
+		_scoreboard = GetNode<Scoreboard>("%Scoreboard");
+		_tankScoreContainer = GetNode<BoxContainer>("%TanksScoreContainer");
 		_tankSetup = new TankSetup();
 
-        //get the turret object
-        turret = GetNode<Marker2D>("Turret");
+		//get the turret object
+		turret = GetNode<Marker2D>("Turret");
 
-        //get the bullet preloaded
-        bullet = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
+		//get the bullet preloaded
+		bullet = GD.Load<PackedScene>("res://Scenes/Bullet.tscn");
 
 		//get sel references
 		_collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
 
-        base._Ready();
-    }
+		//SFX
+		AddChild(shootPlayer);
+		AddChild(deathPlayer);
+
+		//Treads
+		treadsL = GetNode<Node2D>("TreadsL").GetChild<CpuParticles2D>(0);
+		treadsR = GetNode<Node2D>("TreadsR").GetChild<CpuParticles2D>(0);
+
+		base._Ready();
+	}
 
 	void OnLabelResized(){
 		if (_tankLabel != null)
@@ -80,6 +101,9 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 	public override void _PhysicsProcess(double delta)
 	{
+        if(!GetTree().Root.GetNode<GameManager>("GameScene").GAMESTART)
+			return;
+
 		thisTank.Do(_passedActions, _scoreboard);
 		var k2d = MoveAndCollide(_velocity);
 		if (k2d != null)
@@ -92,19 +116,31 @@ public partial class TheTank : CharacterBody2D, IEntity
 		base._PhysicsProcess(delta);
 	}
 
-	internal void Init()
+	internal void Init(TeamData teamInfo = null)
 	{
-        _healthBar.Value = health;
-        thisTank.Setup(_tankSetup);
+		_healthBar.Value = health;
+		thisTank.Setup(_tankSetup);
 
-        //setup Scoreboard object for this tank
-        SetupScoreboard(_tankSetup);
+		//setup Scoreboard object for this tank
+		SetupScoreboard(_tankSetup);
 
 		//setup name
 		_tankLabel.Text = _tankSetup.name;
+
+		//setup sounds
+		shootSound = teamInfo.Get("shootSound").As<AudioStream>();
+		deathSound = teamInfo.Get("deathSound").As<AudioStream>();
+		shootPlayer.Stream = shootSound;
+		deathPlayer.Stream = deathSound;
+
+		//setup team colors
+		//Need to duplicate the material or else sometimes it is treated as shared
+		GetNode<Sprite2D>("TankSprite").Material = ((ShaderMaterial)GetNode<Sprite2D>("TankSprite").Material).Duplicate() as ShaderMaterial;
+		((ShaderMaterial)GetNode<Sprite2D>("TankSprite").Material).SetShaderParameter("_newcolor1", Color.FromHtml(_tankSetup.primaryColor));
+        ((ShaderMaterial)GetNode<Sprite2D>("TankSprite").Material).SetShaderParameter("_newcolor2", Color.FromHtml(_tankSetup.secondaryColor));	
     }
 
-    internal void Shoot()
+	internal void Shoot()
 	{
 		Bullet bulletInstance = (Bullet)bullet.Instantiate();
 		bulletInstance.Position = turret.GlobalPosition;
@@ -112,6 +148,7 @@ public partial class TheTank : CharacterBody2D, IEntity
 		bulletInstance.initializer = this;
 		GetParent().AddChild(bulletInstance);
 		bulletsFired.Add(bulletInstance);
+		shootPlayer.Play();
     }
 
 	internal void PopBullet(Bullet bullet)
@@ -175,13 +212,23 @@ public partial class TheTank : CharacterBody2D, IEntity
 
 		return entityInPath;
     }
+	
+	internal void Tread(API.Rotation rotation)
+	{
+        treadsL.Emitting = false;
+        treadsR.Emitting = false;
+        if(rotation == API.Rotation.CW)
+			treadsL.Emitting = true;
+		if(rotation == API.Rotation.CCW)
+			treadsR.Emitting = true;
+	}
 
-    public override void _Draw()
-    {
-		DrawLine(new Vector2(0, 0), new Vector2(0, -1500), Colors.Green, 2); //Middle
-		DrawLine(new Vector2(0, 0), new Vector2(150, -1500), Colors.Red, 2); //Right
-		DrawLine(new Vector2(0, 0), new Vector2(-150, -1500), Colors.Blue, 2); //Left
-    }
+    // public override void _Draw()
+	// {
+	// 	DrawLine(new Vector2(0, 0), new Vector2(0, -1500), Colors.Green, 2); //Middle
+	// 	DrawLine(new Vector2(0, 0), new Vector2(150, -1500), Colors.Red, 2); //Right
+	// 	DrawLine(new Vector2(0, 0), new Vector2(-150, -1500), Colors.Blue, 2); //Left
+	// }
 
 	internal void SetupScoreboard(TankSetup setup)
 	{
@@ -189,11 +236,11 @@ public partial class TheTank : CharacterBody2D, IEntity
 		scorePanel.Set("tank_health", health);
 		scorePanel.Set("tank_name", setup.name.Length > 12 ? setup.name.Substring(0, 10) + "..." : setup.name);
 
-        _tankScoreContainer.AddChild(scorePanel);
+		_tankScoreContainer.AddChild(scorePanel);
 		scorePanel.Call("change_health", health);
 		scorePanel.Call("change_panel_color", setup.primaryColor, setup.secondaryColor);
 
-    }
+	}
 
     internal void Hurt()
 	{
@@ -203,8 +250,13 @@ public partial class TheTank : CharacterBody2D, IEntity
         _healthBar.Value = health;
         scorePanel.Call("change_health", health);
 
-        if (health <= 0)
-			this.QueueFree();
+		if (health <= 0)
+		{
+			deathPlayer.Reparent(GetTree().Root);
+            deathPlayer.Play();
+
+            this.QueueFree();
+		}
     }
 
 	internal void Score()

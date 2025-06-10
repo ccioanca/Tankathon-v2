@@ -1,0 +1,1223 @@
+[gd_scene load_steps=51 format=4 uid="uid://oaqnkya2frwb"]
+
+[ext_resource type="Script" uid="uid://b4tgpx0u887fo" path="res://GameManager.cs" id="1_u810s"]
+[ext_resource type="Resource" uid="uid://48ue1r6wcln3" path="res://BattleAssets/Round1.tres" id="2_2trbe"]
+[ext_resource type="PackedScene" uid="uid://dojx2g71ojb0q" path="res://Scenes/GenericTank.tscn" id="2_8uoga"]
+[ext_resource type="TileSet" uid="uid://db08e7muwuxi5" path="res://Assets/tileset.tres" id="3_i7srl"]
+[ext_resource type="PackedScene" uid="uid://b8bl3fg1j15cw" path="res://Scenes/Obstacle.tscn" id="4_2tp6q"]
+[ext_resource type="Script" uid="uid://cldikdy7y7gym" path="res://API/Scoreboard.cs" id="5_kwfy1"]
+[ext_resource type="Texture2D" uid="uid://cgjf6kw7hca13" path="res://Assets/Terrain/11.png" id="5_qvetm"]
+[ext_resource type="Texture2D" uid="uid://cd4nakg134e4y" path="res://Assets/Terrain/10.png" id="6_2trbe"]
+[ext_resource type="StyleBox" uid="uid://ddubwu2xifgsa" path="res://Assets/ButtonStyle_Base.tres" id="6_ixjr5"]
+[ext_resource type="Script" uid="uid://ch4kb6ckoy5o7" path="res://Scripts/intro_layer.gd" id="7_8uoga"]
+[ext_resource type="Texture2D" uid="uid://chfvosb22l3q8" path="res://Assets/Terrain/09.png" id="7_fkk8v"]
+[ext_resource type="Texture2D" uid="uid://b1k74nxn5b7fc" path="res://Assets/Other/Purple_Nebula_02-512x512.png" id="8_aip7a"]
+[ext_resource type="Texture2D" uid="uid://bg6vealooe5fd" path="res://Assets/Terrain/07.png" id="8_f2rmj"]
+[ext_resource type="FontFile" uid="uid://d0nva4s6trjsg" path="res://Other/Broken.otf" id="8_kwfy1"]
+[ext_resource type="Theme" uid="uid://ddmf2a442qko" path="res://Other/intro_screen_theme.tres" id="9_2tp6q"]
+[ext_resource type="Texture2D" uid="uid://b5e72vojcpy2w" path="res://Assets/Terrain/06.png" id="9_eqbi2"]
+[ext_resource type="Texture2D" uid="uid://bxacqde2qrs6w" path="res://Assets/Terrain/05.png" id="10_xy0dg"]
+[ext_resource type="AudioStream" uid="uid://el2es21l5fxx" path="res://Audio/countdown2.wav" id="11_1yevk"]
+[ext_resource type="FontFile" uid="uid://ctonyk3pm50er" path="res://Other/Revamped.otf" id="11_ixjr5"]
+[ext_resource type="Texture2D" uid="uid://0sjp38c5b133" path="res://Assets/Terrain/04.png" id="11_oskno"]
+[ext_resource type="Script" uid="uid://b7lgdwoywxenn" path="res://Scripts/intro_player.gd" id="11_x5p3t"]
+[ext_resource type="AudioStream" uid="uid://c4sbqdxw1i6is" path="res://Audio/countdown1.wav" id="12_1yevk"]
+[ext_resource type="Texture2D" uid="uid://7g1321n05mbx" path="res://Assets/Terrain/08.png" id="12_nd4jk"]
+[ext_resource type="Texture2D" uid="uid://c8rhqeechf0sb" path="res://Assets/Terrain/GoldMine_Destroyed.png" id="12_qvetm"]
+[ext_resource type="AudioStream" uid="uid://cotct8in7eqp1" path="res://Audio/MenuMusic.ogg" id="13_0avxp"]
+[ext_resource type="Script" uid="uid://dil8uj4vicf8h" path="res://Scripts/scoreboard_container.gd" id="14_2trbe"]
+[ext_resource type="AudioStream" uid="uid://bxi8ar1v2o4r8" path="res://Audio/BattleMusic.ogg" id="14_x5p3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el57v"]
+size = Vector2(1362.5, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdgab"]
+size = Vector2(80, 800)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6js8"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.403922)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8n5pp"]
+bg_color = Color(0.599233, 0.082279, 0.0834944, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.165656, 0.165656, 0.165656, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo8fx"]
+bg_color = Color(0.497208, 0.060611, 0.0617372, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.165656, 0.165656, 0.165656, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="Gradient" id="Gradient_kwfy1"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.271461, 0.328898, 0.275255, 1, 0.698039, 0.768627, 0.701961, 1, 0.270588, 0.329412, 0.27451, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ixjr5"]
+gradient = SubResource("Gradient_kwfy1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1yevk"]
+texture = SubResource("GradientTexture1D_ixjr5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kwfy1"]
+font_size = 172
+font_color = Color(0.805178, 0.855859, 0.80776, 1)
+outline_size = 35
+outline_color = Color(0.221016, 0.271757, 0.224419, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ixjr5"]
+font_size = 62
+font_color = Color(1.5, 1, 1, 1)
+outline_size = 35
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kwfy1"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ixjr5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tp6q"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ixjr5"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IntroPanel:theme_override_styles/panel:bg_color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IntroPanel:theme_override_styles/panel:bg_color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IntroPanel:theme_override_styles/panel:bg_color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IntroPanel:theme_override_styles/panel:bg_color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/h_separation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/v_separation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BattlePanel:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../CountdownLayer/AnimationPlayer:current_animation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BattlePanel/BattleName:label_settings:font_size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [62]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BattlePanel/BattleName:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BattlePanel/TextureRect:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-136, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BattlePanel/TextureRect4:position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-612, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BattlePanel/TextureRect3:position:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(390, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BattlePanel/TextureRect2:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(663, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_kwfy1"]
+resource_name = "intro"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IntroPanel:theme_override_styles/panel:bg_color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.00606668, -0.113248, 0, -0.127267, 0.00213673, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.7)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/h_separation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(2430, -0.25, 0, 0.25, 0, 2430, -0.25, 0, 0.562877, -92.5295, 36.3463, -0.0944531, -573.462, 0, 0),
+"times": PackedFloat32Array(0, 0.478581, 1.03591)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BattlePanel/LogoContainer:theme_override_constants/v_separation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(5.72485, 0, 0, 0.0694284, -12.3373, -6.61243, -0.0639049, -49.3491, 0, 0),
+"times": PackedFloat32Array(1.03333, 1.23333)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BattlePanel/BattleName:label_settings:font_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.23333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1, 1, 62]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BattlePanel/BattleName:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.16667, 1.26667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("IntroPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"startPlayback"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_x5p3t"]
+resource_name = "intro_enter"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BattlePanel:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(1, 0, 0, 0.1, 0, 0, -0.3, 0.00650117, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CountdownLayer/AnimationPlayer:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"countdown"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IntroPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"endPlayback"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1yevk"]
+_data = {
+&"RESET": SubResource("Animation_ixjr5"),
+&"intro": SubResource("Animation_kwfy1"),
+&"intro_enter": SubResource("Animation_x5p3t")
+}
+
+[sub_resource type="Animation" id="Animation_cja1x"]
+resource_name = "BG"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BattlePanel/TextureRect:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0),
+"points": PackedFloat32Array(-136, -0.25, 0, 1.93333, 1.71806, -159.099, -2.04167, 1.909, 2.04167, -1.909, -136, -1.76667, 1.71806, 0.25, 0),
+"times": PackedFloat32Array(0, 5.03333, 10.0333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BattlePanel/TextureRect4:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0),
+"points": PackedFloat32Array(-612, -0.25, 0, 1.16667, 7.89093, -589.762, -1.1044, 0, 1.1044, 0, -612, -1.23333, 3.10852, 0.25, 0),
+"times": PackedFloat32Array(0, 3.9, 10)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BattlePanel/TextureRect3:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 3, 3, 0),
+"points": PackedFloat32Array(355.366, -0.25, 0, 0.25, 0, 390, -1.45833, 0.456207, 1.45833, -0.456207, 336, -1.31614, 0.456207, 1.31614, -0.456207, 355.366, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.53333, 8.00781, 10)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BattlePanel/TextureRect2:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0),
+"points": PackedFloat32Array(700, -0.25, 0, 2.26667, -0.691528, 663, -2.20342, 1.01355, 2.20342, -1.01355, 700, -1.26667, -0.312622, 0.25, 0),
+"times": PackedFloat32Array(0, 6.01324, 10)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aip7a"]
+_data = {
+&"BG": SubResource("Animation_cja1x")
+}
+
+[sub_resource type="Animation" id="Animation_0avxp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Container:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container/Label:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(72, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Container/Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["3"]
+}
+
+[sub_resource type="Animation" id="Animation_1yevk"]
+resource_name = "countdown"
+length = 4.5
+step = 1.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Container:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.0333333, 0, 1, -0.0333333, 0, 0.233333, 0, 1, -0.233333, 0, 0.0555556, 0, 0, -0.0555556, 0, 0.0111111, 0, 0, -0.0111111, 0, 0.0444444, 0, 1, -0.0444444, 0, 0.233333, 0, 1, -0.233333, 0, 0.0555555, 0, 0, -0.0555556, 0, 0.0111111, 0, 0, -0.0111111, 0, 0.0444444, 0, 1, -0.0444444, 0, 0.233333, 0, 1, -0.233333, 0, 0.0555555, 0, 0, -0.0555556, 0, 0.0111111, 0, 0, -0.0111111, 0, 0.0444444, 0, 1, -0.0444444, 0, 0.233333, 0, 1, -0.233333, 0, 0.0555555, 0, 0, -0.0555555, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.8, 0.966667, 1, 1.13333, 1.83333, 2, 2.03333, 2.16667, 2.86667, 3, 3.03333, 3.16667, 3.86667, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container/Label:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.2, 0.468093, 102, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 102, 0, 0, 0.2, 0.468093, 102, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 102, 0, 0, 0.2, 0.468093, 102, -0.133333, 43.6404, 0, 0, 100, -0.25, 0, 0.25, 0, 102, 0, 0, 0.2, 0.468093, 102, -0.133333, 43.6404, 0, 0, 102, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.966667, 1, 1.23333, 2, 2.03333, 2.26667, 3, 3.03333, 3.26667, 4)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Container/Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2.03333, 3.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["3", "2", "1", "GO!"]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Countdown")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_1yevk")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_1yevk")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_1yevk")
+}, {
+"end_offset": 0.131334,
+"start_offset": 0.0,
+"stream": ExtResource("11_1yevk")
+}],
+"times": PackedFloat32Array(0.2, 1.23333, 2.26667, 3.26667)
+}
+tracks/3/use_blend = true
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartGame"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x5p3t"]
+_data = {
+&"RESET": SubResource("Animation_0avxp"),
+&"countdown": SubResource("Animation_1yevk")
+}
+
+[sub_resource type="Environment" id="Environment_kwfy1"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_intensity = 0.71
+glow_blend_mode = 0
+glow_hdr_threshold = 0.9
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_u810s")
+battleInfo = ExtResource("2_2trbe")
+
+[node name="G1" type="TileMapLayer" parent="."]
+self_modulate = Color(0.6808, 0.74, 0.72224, 1)
+z_index = -10
+tile_map_data = PackedByteArray("AAAAAAAAAAAFAAAAAAAAAAEAAAAFAAEAAAAAAAIAAAAFAAEAAAAAAAkAAAAFAAEAAAAAAAgAAAAFAAEAAAAAAAcAAAAFAAEAAAAAAAYAAAAFAAEAAAAAAAUAAAAFAAEAAAAAAAQAAAAFAAEAAAAAAAMAAAAFAAEAAAAAAAoAAAAFAAIAAAABAAoAAAAGAAIAAAACAAoAAAAGAAIAAAADAAoAAAAGAAIAAAAEAAoAAAAGAAIAAAAFAAoAAAAGAAIAAAAGAAoAAAAGAAIAAAAHAAoAAAAGAAIAAAAIAAoAAAAGAAIAAAAJAAoAAAAGAAIAAAAKAAoAAAAGAAIAAAALAAoAAAAGAAIAAAAMAAoAAAAGAAIAAAANAAoAAAAGAAIAAAAOAAoAAAAGAAIAAAAPAAoAAAAGAAIAAAAQAAoAAAAGAAIAAAARAAoAAAAGAAIAAAASAAoAAAAGAAIAAAATAAoAAAAHAAIAAAATAAkAAAAHAAEAAAATAAgAAAAHAAEAAAATAAcAAAAHAAEAAAATAAYAAAAHAAEAAAATAAUAAAAHAAEAAAATAAQAAAAHAAEAAAATAAMAAAAHAAEAAAATAAIAAAAHAAEAAAATAAEAAAAHAAEAAAATAAAAAAAHAAAAAAASAAAAAAAGAAAAAAARAAAAAAAGAAAAAAAQAAAAAAAGAAAAAAAPAAAAAAAGAAAAAAAOAAAAAAAGAAAAAAANAAAAAAAGAAAAAAAMAAAAAAAGAAAAAAALAAAAAAAGAAAAAAAKAAAAAAAGAAAAAAAJAAAAAAAGAAAAAAAIAAAAAAAGAAAAAAAHAAAAAAAGAAAAAAAGAAAAAAAGAAAAAAAFAAAAAAAGAAAAAAAEAAAAAAAGAAAAAAADAAAAAAAGAAAAAAACAAAAAAAGAAAAAAABAAAAAAAGAAAAAAABAAEAAAAGAAEAAAABAAIAAAAGAAEAAAABAAMAAAAGAAEAAAABAAQAAAAGAAEAAAABAAUAAAAGAAEAAAABAAYAAAAGAAEAAAABAAcAAAAGAAEAAAABAAgAAAAGAAEAAAABAAkAAAAGAAEAAAACAAEAAAAGAAEAAAACAAIAAAAGAAEAAAACAAMAAAAGAAEAAAACAAQAAAAGAAEAAAACAAUAAAAGAAEAAAACAAYAAAAGAAEAAAACAAcAAAAGAAEAAAACAAgAAAAGAAEAAAACAAkAAAAGAAEAAAADAAEAAAAGAAEAAAADAAIAAAAGAAEAAAADAAMAAAAGAAEAAAADAAQAAAAGAAEAAAADAAUAAAAGAAEAAAADAAYAAAAGAAEAAAADAAcAAAAGAAEAAAADAAgAAAAGAAEAAAADAAkAAAAGAAEAAAAEAAEAAAAGAAEAAAAEAAIAAAAGAAEAAAAEAAMAAAAGAAEAAAAEAAQAAAAGAAEAAAAEAAUAAAAGAAEAAAAEAAYAAAAGAAEAAAAEAAcAAAAGAAEAAAAEAAgAAAAGAAEAAAAEAAkAAAAGAAEAAAAFAAEAAAAGAAEAAAAFAAIAAAAGAAEAAAAFAAMAAAAGAAEAAAAFAAQAAAAGAAEAAAAFAAUAAAAGAAEAAAAFAAYAAAAGAAEAAAAFAAcAAAAGAAEAAAAFAAgAAAAGAAEAAAAFAAkAAAAGAAEAAAAGAAEAAAAGAAEAAAAGAAIAAAAGAAEAAAAGAAMAAAAGAAEAAAAGAAQAAAAGAAEAAAAGAAUAAAAGAAEAAAAGAAYAAAAGAAEAAAAGAAcAAAAGAAEAAAAGAAgAAAAGAAEAAAAGAAkAAAAGAAEAAAAHAAEAAAAGAAEAAAAHAAIAAAAGAAEAAAAHAAMAAAAGAAEAAAAHAAQAAAAGAAEAAAAHAAUAAAAGAAEAAAAHAAYAAAAGAAEAAAAHAAcAAAAGAAEAAAAHAAgAAAAGAAEAAAAHAAkAAAAGAAEAAAAIAAEAAAAGAAEAAAAIAAIAAAAGAAEAAAAIAAMAAAAGAAEAAAAIAAQAAAAGAAEAAAAIAAUAAAAGAAEAAAAIAAYAAAAGAAEAAAAIAAcAAAAGAAEAAAAIAAgAAAAGAAEAAAAIAAkAAAAGAAEAAAAJAAEAAAAGAAEAAAAJAAIAAAAGAAEAAAAJAAMAAAAGAAEAAAAJAAQAAAAGAAEAAAAJAAUAAAAGAAEAAAAJAAYAAAAGAAEAAAAJAAcAAAAGAAEAAAAJAAgAAAAGAAEAAAAJAAkAAAAGAAEAAAAKAAEAAAAGAAEAAAAKAAIAAAAGAAEAAAAKAAMAAAAGAAEAAAAKAAQAAAAGAAEAAAAKAAUAAAAGAAEAAAAKAAYAAAAGAAEAAAAKAAcAAAAGAAEAAAAKAAgAAAAGAAEAAAAKAAkAAAAGAAEAAAALAAEAAAAGAAEAAAALAAIAAAAGAAEAAAALAAMAAAAGAAEAAAALAAQAAAAGAAEAAAALAAUAAAAGAAEAAAALAAYAAAAGAAEAAAALAAcAAAAGAAEAAAALAAgAAAAGAAEAAAALAAkAAAAGAAEAAAAMAAEAAAAGAAEAAAAMAAIAAAAGAAEAAAAMAAMAAAAGAAEAAAAMAAQAAAAGAAEAAAAMAAUAAAAGAAEAAAAMAAYAAAAGAAEAAAAMAAcAAAAGAAEAAAAMAAgAAAAGAAEAAAAMAAkAAAAGAAEAAAANAAEAAAAGAAEAAAANAAIAAAAGAAEAAAANAAMAAAAGAAEAAAANAAQAAAAGAAEAAAANAAUAAAAGAAEAAAANAAYAAAAGAAEAAAANAAcAAAAGAAEAAAANAAgAAAAGAAEAAAANAAkAAAAGAAEAAAAOAAEAAAAGAAEAAAAOAAIAAAAGAAEAAAAOAAMAAAAGAAEAAAAOAAQAAAAGAAEAAAAOAAUAAAAGAAEAAAAOAAYAAAAGAAEAAAAOAAcAAAAGAAEAAAAOAAgAAAAGAAEAAAAOAAkAAAAGAAEAAAAPAAEAAAAGAAEAAAAPAAIAAAAGAAEAAAAPAAMAAAAGAAEAAAAPAAQAAAAGAAEAAAAPAAUAAAAGAAEAAAAPAAYAAAAGAAEAAAAPAAcAAAAGAAEAAAAPAAgAAAAGAAEAAAAPAAkAAAAGAAEAAAAQAAEAAAAGAAEAAAAQAAIAAAAGAAEAAAAQAAMAAAAGAAEAAAAQAAQAAAAGAAEAAAAQAAUAAAAGAAEAAAAQAAYAAAAGAAEAAAAQAAcAAAAGAAEAAAAQAAgAAAAGAAEAAAAQAAkAAAAGAAEAAAARAAEAAAAGAAEAAAARAAIAAAAGAAEAAAARAAMAAAAGAAEAAAARAAQAAAAGAAEAAAARAAUAAAAGAAEAAAARAAYAAAAGAAEAAAARAAcAAAAGAAEAAAARAAgAAAAGAAEAAAARAAkAAAAGAAEAAAASAAEAAAAGAAEAAAASAAIAAAAGAAEAAAASAAMAAAAGAAEAAAASAAQAAAAGAAEAAAASAAUAAAAGAAEAAAASAAYAAAAGAAEAAAASAAcAAAAGAAEAAAASAAgAAAAGAAEAAAASAAkAAAAGAAEAAAA=")
+tile_set = ExtResource("3_i7srl")
+
+[node name="TileMapLayer4" type="TileMapLayer" parent="."]
+self_modulate = Color(1, 1, 1, 0.552941)
+z_index = -10
+tile_map_data = PackedByteArray("AAABAAUAAgAAAAIAAAACAAUAAgAAAAMAAAADAAUAAgAAAAIAAAAEAAUAAgAAAAIAAAAFAAUAAgAAAAIAAAAGAAUAAgAAAAIAAAAHAAUAAgAAAAMAAAAIAAUAAgAAAAMAAAAJAAUAAgAAAAIAAAAKAAUAAgAAAAIAAAAEAAgAAgAAAAIAAAAEAAcAAgAAAAIAAAAFAAcAAgAAAAIAAAAFAAYAAgAAAAMAAAAGAAYAAgAAAAIAAAAHAAQAAgAAAAIAAAAIAAQAAgAAAAIAAAAJAAQAAgAAAAMAAAAJAAYAAgAAAAIAAAAIAAYAAgAAAAMAAAAIAAcAAgAAAAIAAAAHAAcAAgAAAAIAAAAGAAgAAgAAAAMAAAAFAAgAAgAAAAMAAAAEAAkAAgAAAAMAAAADAAkAAgAAAAIAAAADAAgAAgAAAAIAAAAJAAcAAgAAAAMAAAAGAAcAAgAAAAMAAAAHAAYAAgAAAAIAAAAFAAkAAgAAAAIAAAAGAAkAAgAAAAIAAAAHAAgAAgAAAAIAAAAIAAgAAgAAAAMAAAAJAAgAAgAAAAIAAAAKAAcAAgAAAAIAAAAKAAYAAgAAAAIAAAAKAAgAAgAAAAIAAAAHAAkAAgAAAAIAAAAFAAoAAgAAAAIAAAAEAAoAAgAAAAMAAAADAAoAAgAAAAMAAAACAAoAAgAAAAIAAAABAAoAAgAAAAMAAAAGAAoAAgAAAAIAAAAHAAoAAgAAAAMAAAAIAAoAAgAAAAMAAAAJAAoAAgAAAAIAAAACAAkAAgAAAAIAAAACAAgAAgAAAAMAAAABAAgAAgAAAAIAAAABAAcAAgAAAAIAAAACAAYAAgAAAAMAAAACAAcAAgAAAAIAAAADAAYAAgAAAAIAAAADAAcAAgAAAAIAAAAEAAYAAgAAAAMAAAABAAkAAgAAAAIAAAAAAAoAAgAAAAMAAAAAAAkAAgAAAAMAAAAAAAgAAgAAAAIAAAAAAAcAAgAAAAIAAAAAAAYAAgAAAAIAAAABAAYAAgAAAAMAAAABAAQAAgAAAAIAAAAAAAUAAgAAAAIAAAAAAAQAAgAAAAMAAAAAAAMAAgAAAAMAAAAAAAIAAgAAAAMAAAAAAAEAAgAAAAMAAAAAAAAAAgAIAAEAAAABAAAAAgAIAAEAAAABAAEAAgAAAAIAAAABAAIAAgAAAAIAAAABAAMAAgAAAAMAAAACAAQAAgAAAAIAAAACAAMAAgAAAAMAAAACAAIAAgAAAAMAAAACAAEAAgAAAAIAAAACAAAAAgAIAAEAAAADAAAAAgAIAAEAAAAEAAAAAgAIAAEAAAAFAAAAAgAIAAEAAAAGAAAAAgAIAAEAAAAHAAAAAgAIAAEAAAAIAAAAAgAIAAEAAAAJAAAAAgAIAAEAAAAKAAAAAgAIAAEAAAALAAAAAgAIAAEAAAAMAAAAAgAIAAEAAAANAAAAAgAIAAEAAAAOAAAAAgAIAAEAAAAPAAAAAgAIAAEAAAAQAAAAAgAIAAEAAAARAAAAAgAIAAEAAAASAAAAAgAIAAEAAAATAAAAAgAIAAEAAAATAAEAAgAAAAIAAAATAAIAAgAAAAIAAAATAAMAAgAAAAIAAAATAAQAAgAAAAMAAAATAAUAAgAAAAMAAAATAAYAAgAAAAIAAAATAAcAAgAAAAMAAAATAAgAAgAAAAMAAAATAAkAAgAAAAIAAAATAAoAAgAAAAMAAAASAAoAAgAAAAMAAAARAAoAAgAAAAIAAAAQAAoAAgAAAAMAAAAPAAoAAgAAAAIAAAAOAAoAAgAAAAIAAAANAAoAAgAAAAMAAAAMAAoAAgAAAAIAAAALAAoAAgAAAAMAAAAKAAoAAgAAAAIAAAAIAAkAAgAAAAIAAAAJAAkAAgAAAAMAAAAKAAkAAgAAAAIAAAALAAkAAgAAAAMAAAAMAAkAAgAAAAIAAAANAAkAAgAAAAMAAAAOAAkAAgAAAAIAAAAPAAkAAgAAAAIAAAAPAAgAAgAAAAIAAAAQAAgAAgAAAAMAAAARAAgAAgAAAAMAAAASAAgAAgAAAAIAAAASAAkAAgAAAAIAAAARAAkAAgAAAAIAAAAQAAkAAgAAAAIAAAANAAUAAgAAAAMAAAANAAQAAgAAAAIAAAANAAMAAgAAAAIAAAANAAIAAgAAAAIAAAANAAEAAgAAAAIAAAAMAAEAAgAAAAMAAAALAAEAAgAAAAIAAAAKAAEAAgAAAAMAAAAJAAEAAgAAAAIAAAAIAAEAAgAAAAMAAAAHAAEAAgAAAAIAAAAGAAEAAgAAAAMAAAAFAAEAAgAAAAIAAAAEAAEAAgAAAAIAAAADAAEAAgAAAAIAAAADAAIAAgAAAAMAAAADAAMAAgAAAAMAAAADAAQAAgAAAAIAAAAEAAQAAgAAAAMAAAAEAAMAAgAAAAMAAAAEAAIAAgAAAAIAAAAFAAIAAgAAAAMAAAAFAAMAAgAAAAIAAAAFAAQAAgAAAAIAAAAGAAQAAgAAAAIAAAAGAAMAAgAAAAIAAAAGAAIAAgAAAAIAAAAHAAIAAgAAAAMAAAAHAAMAAgAAAAMAAAAIAAMAAgAAAAMAAAAIAAIAAgAAAAIAAAAJAAIAAgAAAAIAAAAJAAMAAgAAAAIAAAAKAAMAAgAAAAIAAAAKAAIAAgAAAAIAAAALAAIAAgAAAAIAAAALAAMAAgAAAAMAAAALAAQAAgAAAAMAAAAKAAQAAgAAAAMAAAALAAUAAgAAAAIAAAALAAYAAgAAAAIAAAALAAcAAgAAAAMAAAALAAgAAgAAAAIAAAAMAAgAAgAAAAIAAAAMAAcAAgAAAAIAAAAMAAYAAgAAAAMAAAAMAAUAAgAAAAMAAAAMAAQAAgAAAAIAAAAMAAMAAgAAAAMAAAAMAAIAAgAAAAIAAAANAAYAAgAAAAIAAAANAAcAAgAAAAMAAAANAAgAAgAAAAMAAAAOAAgAAgAAAAMAAAAOAAcAAgAAAAIAAAAOAAYAAgAAAAMAAAAOAAUAAgAAAAIAAAAOAAQAAgAAAAIAAAAOAAMAAgAAAAIAAAAOAAIAAgAAAAIAAAAOAAEAAgAAAAMAAAAPAAEAAgAAAAIAAAAPAAIAAgAAAAIAAAAPAAMAAgAAAAMAAAAPAAQAAgAAAAIAAAAPAAUAAgAAAAIAAAAPAAYAAgAAAAIAAAAPAAcAAgAAAAIAAAAQAAcAAgAAAAIAAAAQAAYAAgAAAAMAAAAQAAUAAgAAAAIAAAAQAAQAAgAAAAIAAAAQAAMAAgAAAAMAAAAQAAIAAgAAAAIAAAAQAAEAAgAAAAIAAAARAAEAAgAAAAMAAAARAAIAAgAAAAIAAAARAAMAAgAAAAMAAAARAAQAAgAAAAMAAAARAAUAAgAAAAIAAAARAAYAAgAAAAMAAAARAAcAAgAAAAIAAAASAAcAAgAAAAIAAAASAAYAAgAAAAMAAAASAAUAAgAAAAMAAAASAAQAAgAAAAIAAAASAAMAAgAAAAMAAAASAAIAAgAAAAMAAAASAAEAAgAAAAMAAAA=")
+tile_set = ExtResource("3_i7srl")
+
+[node name="Obstacles2" type="TileMapLayer" parent="."]
+z_index = 10
+position = Vector2(-24, -24)
+tile_map_data = PackedByteArray("AAABAAAAAQAAAAMAAAABAP//AQAAAAIAAAABAP7/AQAAAAQAAAACAP7/AQABAAQAAAACAP//AQABAAIAAAACAAAAAQABAAMAAAADAP7/AQABAAQAAAADAP//AQABAAIAAAADAAAAAQABAAMAAAAEAP7/AQABAAQAAAAEAP//AQABAAIAAAAEAAAAAQABAAMAAAAFAP7/AQABAAQAAAAFAP//AQABAAIAAAAFAAAAAQABAAMAAAAGAP7/AQABAAQAAAAGAP//AQABAAIAAAAGAAAAAQABAAMAAAAHAP7/AQABAAQAAAAHAP//AQABAAIAAAAHAAAAAQABAAMAAAAIAP7/AQABAAQAAAAIAP//AQABAAIAAAAIAAAAAQABAAMAAAAJAP7/AQABAAQAAAAJAP//AQABAAIAAAAJAAAAAQABAAMAAAAKAP7/AQABAAQAAAAKAP//AQABAAIAAAAKAAAAAQABAAMAAAALAP7/AQABAAQAAAALAP//AQABAAIAAAALAAAAAQABAAMAAAAMAP7/AQABAAQAAAAMAP//AQABAAIAAAAMAAAAAQABAAMAAAANAP7/AQABAAQAAAANAP//AQABAAIAAAANAAAAAQABAAMAAAAOAP7/AQABAAQAAAAOAP//AQABAAIAAAAOAAAAAQABAAMAAAAPAP7/AQABAAQAAAAPAP//AQABAAIAAAAPAAAAAQABAAMAAAAQAP7/AQABAAQAAAAQAP//AQABAAIAAAAQAAAAAQABAAMAAAARAP7/AQABAAQAAAARAP//AQABAAIAAAARAAAAAQABAAMAAAASAP7/AQABAAQAAAASAP//AQABAAIAAAASAAAAAQABAAMAAAATAP//AQACAAIAAAATAAAAAQACAAMAAAATAP7/AQACAAQAAAAUAP//AQAAAAQAAAAUAAsAAQAAAAIAAAAUAAwAAQAAAAMAAAAUAAoAAQAAAAIAAAAUAAkAAQAAAAIAAAAUAAgAAQAAAAIAAAAUAAcAAQAAAAIAAAAUAAYAAQAAAAIAAAAUAAUAAQAAAAIAAAAUAAQAAQAAAAIAAAAUAAMAAQAAAAIAAAAUAAIAAQAAAAIAAAAUAAEAAQAAAAIAAAAUAAAAAQAAAAIAAAD+////AQAAAAQAAAD+/wAAAQAAAAIAAAD+/wEAAQAAAAIAAAD+/wIAAQAAAAIAAAD+/wMAAQAAAAIAAAD+/wQAAQAAAAIAAAD+/wUAAQAAAAIAAAD+/wYAAQAAAAIAAAD+/wcAAQAAAAIAAAD+/wgAAQAAAAIAAAD+/wkAAQAAAAIAAAD+/woAAQAAAAIAAAD+/wsAAQAAAAIAAAD+/wwAAQAAAAMAAAD/////AQABAAQAAAD//wAAAQABAAIAAAD//wEAAQABAAIAAAD//wIAAQABAAIAAAD//wMAAQABAAIAAAD//wQAAQABAAIAAAD//wUAAQABAAIAAAD//wYAAQABAAIAAAD//wcAAQABAAIAAAD//wgAAQABAAIAAAD//wkAAQABAAIAAAD//woAAQABAAIAAAD//wsAAQABAAIAAAD//wwAAQABAAMAAAAAAP//AQACAAQAAAAAAAAAAQACAAIAAAAAAAEAAQACAAIAAAAAAAIAAQACAAIAAAAAAAMAAQACAAIAAAAAAAQAAQACAAIAAAAAAAUAAQACAAIAAAAAAAYAAQACAAIAAAAAAAcAAQACAAIAAAAAAAgAAQACAAIAAAAAAAkAAQACAAIAAAAAAAoAAQACAAIAAAAAAAsAAQACAAIAAAAAAAwAAQACAAMAAAABAAsAAQAAAAQAAAABAAwAAQAAAAIAAAABAA0AAQAAAAMAAAACAAsAAQABAAQAAAACAAwAAQABAAIAAAACAA0AAQABAAMAAAADAAsAAQABAAQAAAADAAwAAQABAAIAAAADAA0AAQABAAMAAAAEAAsAAQABAAQAAAAEAAwAAQABAAIAAAAEAA0AAQABAAMAAAAFAAsAAQABAAQAAAAFAAwAAQABAAIAAAAFAA0AAQABAAMAAAAGAAsAAQABAAQAAAAGAAwAAQABAAIAAAAGAA0AAQABAAMAAAAHAAsAAQABAAQAAAAHAAwAAQABAAIAAAAHAA0AAQABAAMAAAAIAAsAAQABAAQAAAAIAAwAAQABAAIAAAAIAA0AAQABAAMAAAAJAAsAAQABAAQAAAAJAAwAAQABAAIAAAAJAA0AAQABAAMAAAAKAAsAAQABAAQAAAAKAAwAAQABAAIAAAAKAA0AAQABAAMAAAALAAsAAQABAAQAAAALAAwAAQABAAIAAAALAA0AAQABAAMAAAAMAAsAAQABAAQAAAAMAAwAAQABAAIAAAAMAA0AAQABAAMAAAANAAsAAQABAAQAAAANAAwAAQABAAIAAAANAA0AAQABAAMAAAAOAAsAAQABAAQAAAAOAAwAAQABAAIAAAAOAA0AAQABAAMAAAAPAAsAAQABAAQAAAAPAAwAAQABAAIAAAAPAA0AAQABAAMAAAAQAAsAAQABAAQAAAAQAAwAAQABAAIAAAAQAA0AAQABAAMAAAARAAsAAQABAAQAAAARAAwAAQABAAIAAAARAA0AAQABAAMAAAASAAsAAQABAAQAAAASAAwAAQABAAIAAAASAA0AAQABAAMAAAATAAsAAQACAAQAAAATAAwAAQACAAIAAAATAA0AAQACAAMAAAAKAAYAAQADAAQAAAAWAP//AQABAAQAAAAWAAAAAQABAAIAAAAWAAEAAQABAAIAAAAWAAIAAQABAAIAAAAWAAMAAQABAAIAAAAWAAQAAQABAAIAAAAWAAUAAQABAAIAAAAWAAYAAQABAAIAAAAWAAcAAQABAAIAAAAWAAgAAQABAAIAAAAWAAkAAQABAAIAAAAWAAoAAQABAAIAAAAWAAsAAQABAAIAAAAWAAwAAQABAAMAAAAXAP//AQACAAQAAAAXAAAAAQACAAIAAAAXAAEAAQACAAIAAAAXAAIAAQACAAIAAAAXAAMAAQACAAIAAAAXAAQAAQACAAIAAAAXAAUAAQACAAIAAAAXAAYAAQACAAIAAAAXAAcAAQACAAIAAAAXAAgAAQACAAIAAAAXAAkAAQACAAIAAAAXAAoAAQACAAIAAAAXAAsAAQACAAIAAAAXAAwAAQACAAMAAAAVAP//AQABAAQAAAAVAAAAAQABAAIAAAAVAAEAAQABAAIAAAAVAAIAAQABAAIAAAAVAAMAAQABAAIAAAAVAAQAAQABAAIAAAAVAAUAAQABAAIAAAAVAAYAAQABAAIAAAAVAAcAAQABAAIAAAAVAAgAAQABAAIAAAAVAAkAAQABAAIAAAAVAAoAAQABAAIAAAAVAAsAAQABAAIAAAAVAAwAAQABAAMAAAA=")
+tile_set = ExtResource("3_i7srl")
+
+[node name="GUp" type="TileMapLayer" parent="."]
+z_index = 10
+position = Vector2(-24, -24)
+tile_map_data = PackedByteArray("AAAKAAYAAAAJAAAAAAAIAAAAAAAJAAAAAAAJAAAAAAAJAAAAAAAKAAAAAAAJAAAAAAALAAAAAAAJAAAAAAAMAAAAAAAJAAAAAAANAAAAAAAJAAAAAAAOAAAAAAAJAAAAAAAPAAAAAAAJAAAAAAAQAAAAAAAJAAAAAAARAAAAAAAJAAAAAAASAAAAAAAJAAAAAAATAAAAAAAJAAAAAAAGAAAAAAAJAAAAAAAFAAAAAAAJAAAAAAAEAAAAAAAJAAAAAAADAAAAAAAJAAAAAAACAAAAAAAJAAAAAAABAAAAAAAJAAAAAAAHAAAAAAAJAAAAAAA=")
+tile_set = ExtResource("3_i7srl")
+
+[node name="Deco" type="Node2D" parent="."]
+
+[node name="11" type="Sprite2D" parent="Deco"]
+position = Vector2(273, 646)
+texture = ExtResource("5_qvetm")
+
+[node name="10" type="Sprite2D" parent="Deco"]
+position = Vector2(82, 373)
+texture = ExtResource("6_2trbe")
+
+[node name="09" type="Sprite2D" parent="Deco"]
+position = Vector2(112, 402)
+texture = ExtResource("7_fkk8v")
+
+[node name="07" type="Sprite2D" parent="Deco"]
+position = Vector2(121, 366)
+texture = ExtResource("8_f2rmj")
+
+[node name="12" type="Sprite2D" parent="Deco"]
+position = Vector2(315, 668)
+texture = ExtResource("7_fkk8v")
+
+[node name="06" type="Sprite2D" parent="Deco"]
+position = Vector2(704, 74)
+texture = ExtResource("9_eqbi2")
+
+[node name="05" type="Sprite2D" parent="Deco"]
+position = Vector2(734, 99)
+texture = ExtResource("10_xy0dg")
+
+[node name="13" type="Sprite2D" parent="Deco"]
+position = Vector2(60, 213)
+texture = ExtResource("11_oskno")
+
+[node name="14" type="Sprite2D" parent="Deco"]
+position = Vector2(77, 229)
+texture = ExtResource("11_oskno")
+
+[node name="15" type="Sprite2D" parent="Deco"]
+position = Vector2(46, 233)
+texture = ExtResource("9_eqbi2")
+
+[node name="16" type="Sprite2D" parent="Deco"]
+position = Vector2(720, 473)
+texture = ExtResource("10_xy0dg")
+
+[node name="17" type="Sprite2D" parent="Deco"]
+position = Vector2(738, 482)
+texture = ExtResource("8_f2rmj")
+
+[node name="18" type="Sprite2D" parent="Deco"]
+position = Vector2(745, 457)
+texture = ExtResource("6_2trbe")
+
+[node name="19" type="Sprite2D" parent="Deco"]
+position = Vector2(399, 624)
+texture = ExtResource("5_qvetm")
+
+[node name="20" type="Sprite2D" parent="Deco"]
+position = Vector2(1207, 670)
+texture = ExtResource("7_fkk8v")
+
+[node name="21" type="Sprite2D" parent="Deco"]
+position = Vector2(1164, 661)
+texture = ExtResource("8_f2rmj")
+
+[node name="22" type="Sprite2D" parent="Deco"]
+position = Vector2(1183, 648)
+texture = ExtResource("11_oskno")
+
+[node name="23" type="Sprite2D" parent="Deco"]
+position = Vector2(1224, 61)
+texture = ExtResource("12_nd4jk")
+
+[node name="24" type="Sprite2D" parent="Deco"]
+position = Vector2(1197, 59)
+texture = ExtResource("11_oskno")
+
+[node name="25" type="Sprite2D" parent="Deco"]
+position = Vector2(461, 286)
+texture = ExtResource("11_oskno")
+
+[node name="26" type="Sprite2D" parent="Deco"]
+position = Vector2(477, 298)
+texture = ExtResource("10_xy0dg")
+
+[node name="27" type="Sprite2D" parent="Deco"]
+position = Vector2(347, 115)
+texture = ExtResource("9_eqbi2")
+
+[node name="28" type="Sprite2D" parent="Deco"]
+position = Vector2(994, 631)
+texture = ExtResource("11_oskno")
+
+[node name="29" type="Sprite2D" parent="Deco"]
+position = Vector2(974, 643)
+texture = ExtResource("10_xy0dg")
+
+[node name="30" type="Sprite2D" parent="Deco"]
+position = Vector2(930, 241)
+texture = ExtResource("6_2trbe")
+
+[node name="31" type="Sprite2D" parent="Deco"]
+position = Vector2(962, 218)
+texture = ExtResource("7_fkk8v")
+
+[node name="GoldMineDestroyed" type="Sprite2D" parent="Deco"]
+position = Vector2(639.5, 385)
+scale = Vector2(0.526042, 0.921875)
+texture = ExtResource("12_qvetm")
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Node2D" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+
+[node name="Rectangle1" parent="Obstacles/Node2D" index="0"]
+visible = false
+offset_right = 1320.0
+
+[node name="CollisionShape2D" parent="Obstacles/Node2D" index="1"]
+position = Vector2(640, 0)
+shape = SubResource("RectangleShape2D_el57v")
+
+[node name="Node2D2" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+position = Vector2(0, 720)
+
+[node name="Rectangle1" parent="Obstacles/Node2D2" index="0"]
+visible = false
+offset_right = 1320.0
+
+[node name="CollisionShape2D" parent="Obstacles/Node2D2" index="1"]
+position = Vector2(640, 0)
+shape = SubResource("RectangleShape2D_el57v")
+
+[node name="Node2D4" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+
+[node name="Rectangle1" parent="Obstacles/Node2D4" index="0"]
+visible = false
+custom_minimum_size = Vector2(0, 800)
+
+[node name="CollisionShape2D" parent="Obstacles/Node2D4" index="1"]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_sdgab")
+
+[node name="Node2D5" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+position = Vector2(1293, 0)
+
+[node name="Rectangle1" parent="Obstacles/Node2D5" index="0"]
+visible = false
+custom_minimum_size = Vector2(0, 800)
+
+[node name="CollisionShape2D" parent="Obstacles/Node2D5" index="1"]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_sdgab")
+
+[node name="Node2D3" parent="Obstacles" instance=ExtResource("4_2tp6q")]
+position = Vector2(640, 385)
+
+[node name="Rectangle1" parent="Obstacles/Node2D3" index="0"]
+visible = false
+
+[node name="ScoreboardContainer" type="PanelContainer" parent="."]
+top_level = true
+z_index = 100
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -171.0
+offset_bottom = 144.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x6js8")
+script = ExtResource("14_2trbe")
+
+[node name="Scoreboard" type="VBoxContainer" parent="ScoreboardContainer"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 2
+script = ExtResource("5_kwfy1")
+
+[node name="Label" type="Label" parent="ScoreboardContainer/Scoreboard"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Scoreboard"
+
+[node name="TimeLeft" type="Label" parent="ScoreboardContainer/Scoreboard"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0:00"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ScoreboardContainer/Scoreboard"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_styles/hover = SubResource("StyleBoxFlat_8n5pp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vo8fx")
+theme_override_styles/normal = ExtResource("6_ixjr5")
+text = "Restart"
+
+[node name="TanksScoreContainer" type="VBoxContainer" parent="ScoreboardContainer/Scoreboard"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TopLeftTank" parent="." instance=ExtResource("2_8uoga")]
+position = Vector2(150, 150)
+rotation = 2.35619
+
+[node name="BottomRightTank" parent="." instance=ExtResource("2_8uoga")]
+position = Vector2(1130, 570)
+rotation = -0.785398
+
+[node name="BottomLeftTank" parent="." instance=ExtResource("2_8uoga")]
+position = Vector2(150, 570)
+rotation = 0.785398
+
+[node name="TopRightTank" parent="." instance=ExtResource("2_8uoga")]
+position = Vector2(1130, 150)
+rotation = -2.35619
+
+[node name="IntroLayer" type="CanvasLayer" parent="."]
+script = ExtResource("7_8uoga")
+
+[node name="BattlePanel" type="Panel" parent="IntroLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_1yevk")
+
+[node name="TextureRect5" type="TextureRect" parent="IntroLayer/BattlePanel"]
+self_modulate = Color(1, 1, 1, 0.74)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_aip7a")
+stretch_mode = 1
+
+[node name="TextureRect" type="ColorRect" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -457.127
+offset_top = -496.0
+offset_right = 262.873
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.237188
+color = Color(0, 0, 0, 0.5)
+
+[node name="TextureRect2" type="ColorRect" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = 303.0
+offset_right = 518.0
+offset_bottom = 803.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.0678253
+color = Color(0, 0, 0, 0.5)
+
+[node name="TextureRect3" type="ColorRect" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -337.0
+offset_top = 30.0
+offset_right = 383.0
+offset_bottom = 530.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.208645
+color = Color(0.259294, 0.259294, 0.259294, 0.5)
+
+[node name="TextureRect4" type="ColorRect" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 322.0
+offset_top = -972.0
+offset_right = 1042.0
+offset_bottom = -472.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.374323
+color = Color(0.288518, 0.288518, 0.288518, 0.5)
+
+[node name="VS Container" type="Control" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="V" type="Label" parent="IntroLayer/BattlePanel/VS Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -90.0
+offset_right = 33.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 50
+theme_override_constants/shadow_outline_size = 35
+theme_override_fonts/font = ExtResource("8_kwfy1")
+text = "V"
+label_settings = SubResource("LabelSettings_kwfy1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S" type="Label" parent="IntroLayer/BattlePanel/VS Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -44.0
+offset_right = 99.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 50
+theme_override_constants/shadow_outline_size = 35
+theme_override_fonts/font = ExtResource("8_kwfy1")
+text = "S"
+label_settings = SubResource("LabelSettings_kwfy1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BattleName" type="Label" parent="IntroLayer/BattlePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.5
+offset_top = 33.0
+offset_right = 47.5
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 50
+theme_override_constants/shadow_outline_size = 35
+theme_override_fonts/font = ExtResource("11_ixjr5")
+text = "Battle Name"
+label_settings = SubResource("LabelSettings_ixjr5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LogoContainer" type="GridContainer" parent="IntroLayer/BattlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 100
+columns = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="IntroLayer/BattlePanel/LogoContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="TLContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer/TLContainer"]
+modulate = Color(1.2, 1, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = SubResource("PlaceholderTexture2D_kwfy1")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer/HBoxContainer/TLContainer"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme = ExtResource("9_2tp6q")
+text = "TEAM NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="IntroLayer/BattlePanel/LogoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="TRContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/TRContainer"]
+modulate = Color(1.2, 1, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = SubResource("PlaceholderTexture2D_ixjr5")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer2/HBoxContainer/TRContainer"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme = ExtResource("9_2tp6q")
+text = "TEAM NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="IntroLayer/BattlePanel/LogoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3"]
+layout_mode = 2
+alignment = 2
+
+[node name="BLContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer/BLContainer"]
+modulate = Color(1.2, 1, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = SubResource("PlaceholderTexture2D_ixjr5")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer3/HBoxContainer/BLContainer"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme = ExtResource("9_2tp6q")
+text = "TEAM NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="IntroLayer/BattlePanel/LogoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="BRContainer" type="VBoxContainer" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer/BRContainer"]
+modulate = Color(1.2, 1, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = SubResource("PlaceholderTexture2D_ixjr5")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="IntroLayer/BattlePanel/LogoContainer/MarginContainer4/HBoxContainer/BRContainer"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme = ExtResource("9_2tp6q")
+text = "TEAM NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="IntroPanel" type="Panel" parent="IntroLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2tp6q")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="IntroLayer"]
+color = Color(0.942823, 0.942823, 0.942823, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IntroLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_1yevk")
+}
+autoplay = "intro"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="IntroLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_aip7a")
+}
+autoplay = "BG"
+
+[node name="IntroPlayer" type="AudioStreamPlayer" parent="IntroLayer"]
+stream = ExtResource("13_0avxp")
+script = ExtResource("11_x5p3t")
+
+[node name="CountdownLayer" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Control" parent="CountdownLayer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CountdownLayer/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -49.5
+offset_right = 20.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("11_ixjr5")
+theme_override_font_sizes/font_size = 72
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CountdownLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_x5p3t")
+}
+
+[node name="Countdown" type="AudioStreamPlayer" parent="CountdownLayer"]
+bus = &"Countdown"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kwfy1")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("14_x5p3t")
+bus = &"Music"
+
+[connection signal="pressed" from="ScoreboardContainer/Scoreboard/Button" to="ScoreboardContainer/Scoreboard" method="RestartPressed"]
+
+[editable path="Obstacles/Node2D"]
+[editable path="Obstacles/Node2D2"]
+[editable path="Obstacles/Node2D4"]
+[editable path="Obstacles/Node2D5"]
+[editable path="Obstacles/Node2D3"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3i72ol6h2unu"]
+
+[ext_resource type="Texture2D" uid="uid://drhjntdwk1jr8" path="res://Assets/Tank/Treads.png" id="1_k6ciy"]
+[ext_resource type="Script" uid="uid://c8y0rff6rrlrd" path="res://Scripts/tread_segment.gd" id="2_wcim1"]
+
+[node name="TreadFootprint" type="Node2D"]
+z_index = -1
+
+[node name="LineSegment" type="Sprite2D" parent="."]
+modulate = Color(0.39, 0.335335, 0.2769, 0.819608)
+z_index = -1
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_k6ciy")
+offset = Vector2(16, 0)
+script = ExtResource("2_wcim1")
+color = Color(0.388235, 0.337255, 0.278431, 0.819608)

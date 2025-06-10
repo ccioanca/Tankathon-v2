@@ -1,26 +1,111 @@
 using Godot;
 using System;
-using System.IO;
-using System.Reflection;
-using Tankathon.API;
+using System.Collections.Generic;
+using Tankathon.Scripts;
 
 namespace Tankathon.API.Internal;
+
 public partial class GameManager : Node2D
 {
-	TheTank blueTank = null;
-	TheTank redTank = null;
+	[ExportGroup("Battle Info")]
+	[Export]
+	BattleInfo battleInfo;
+
+
+	TheTank tlTank = null;
+	TheTank trTank = null;
+	TheTank blTank = null;
+	TheTank brTank = null;
+
+	//list of combatants
+	private List<TeamData> _tankTypes;
+
+	//Game state
+	[Export]
+	public bool GAMESTART = false;
+
+	AudioStreamPlayer musicPlayer;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		blueTank = GetNode<TheTank>("BlueTank");
-		redTank = GetNode<TheTank>("RedTank");
+		musicPlayer = GetNode<AudioStreamPlayer>("%MusicPlayer");
 
-		//Swap this initialization around to try from the other side! 
-		//Alternatively, try to pit your own tank against itself by initializing it for both tanks!
-		blueTank.thisTank = new Tankathon.MyTank.MyTank();
-		redTank.thisTank = new Tankathon.EvilTank.DumTank(); //Swap DumTank to EvilTank for a tank with a little more logic
+        _tankTypes = new List<TeamData>();
+        var teamsArray = battleInfo.Get("teams").As<Godot.Collections.Array>();
 
-		blueTank.Init();
-		redTank.Init();
+        for (int i = 0; i < teamsArray.Count && i < 4; i++)
+        {
+            var teamData = teamsArray[i].As<TeamData>();
+            if (teamData != null)
+            {
+                _tankTypes.Add(teamData);
+            }
+        }
+
+        tlTank = GetNode<TheTank>("TopLeftTank");
+		brTank = GetNode<TheTank>("BottomRightTank");
+		trTank = GetNodeOrNull<TheTank>("TopRightTank");
+		blTank = GetNodeOrNull<TheTank>("BottomLeftTank");
+
+		if (teamsArray.Count < 3)
+		{
+			trTank.QueueFree();
+			trTank = null;
+		}
+		if (teamsArray.Count < 4)
+		{
+			blTank.QueueFree();
+			blTank = null;
+		}
+
+		tlTank.thisTank = Activator.CreateInstance(Type.GetType(_tankTypes[0].tankType)) as ITank;
+		brTank.thisTank = Activator.CreateInstance(Type.GetType(_tankTypes[1].tankType)) as ITank;
+		if (trTank != null)
+			trTank.thisTank = Activator.CreateInstance(Type.GetType(_tankTypes[2].tankType)) as ITank;
+		if (blTank != null)
+			blTank.thisTank = Activator.CreateInstance(Type.GetType(_tankTypes[3].tankType)) as ITank;
+
+		tlTank.Init(_tankTypes[0]);
+		brTank.Init(_tankTypes[1]);
+		if (trTank != null)
+			trTank.Init(_tankTypes[2]);
+		if (blTank != null)
+			blTank.Init(_tankTypes[3]);
+	}
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionPressed("Fullscreen"))
+        {
+			if (DisplayServer.WindowGetMode() != DisplayServer.WindowMode.Fullscreen)
+			{
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+			}
+			else
+			{
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+			}
+        }
+        base._Process(delta);
     }
+
+	public void StartGame()
+	{
+		GAMESTART = true;
+		musicPlayer.Play();
+		GetNode<Scoreboard>("%Scoreboard").StartTimer((double)battleInfo.battleTime);
+	}
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+		if (@event is InputEventKey eventKey)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Alt) //TODO: maybe use a different key? 
+				Engine.TimeScale = 3f;
+            else
+				Engine.TimeScale = 1f;
+
+			base._UnhandledInput(@event);
+    }
+	
 }
